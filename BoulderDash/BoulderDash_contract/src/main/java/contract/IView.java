@@ -8,10 +8,19 @@ package contract;
 public interface IView {
 
 	/**
-	 * Prints the message.
+	 * Gets the view frame.
 	 *
-	 * @param message
-	 *          the message
+	 * @return the viewFrame.
 	 */
-	void printMessage(final String message);
+	
+//	public ViewFrame getViewFrame();
+	
+	/**
+	 * Sets the view frame.
+	 *
+	 * @param viewFrame
+	 *         the new viewFrame    .
+	 */
+	
+	//public void setViewFrame(ViewFrame viewFrame);
 }

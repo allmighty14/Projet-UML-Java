@@ -10,13 +10,6 @@ public interface IController {
 	/**
 	 * Control.
 	 */
-	public void control();
+	public void start();
 
-	/**
-	 * Order perform.
-	 *
-	 * @param controllerOrder
-	 *          the controller order
-	 */
-	public void orderPerform(ControllerOrder controllerOrder);
 }

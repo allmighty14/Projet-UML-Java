@@ -1,0 +1,6 @@
+Hero : H
+Wall: |
+Ground: x
+Monster: M
+Rock:  
+Diamond: *
