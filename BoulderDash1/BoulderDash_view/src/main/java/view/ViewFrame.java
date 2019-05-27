@@ -15,10 +15,10 @@ public class ViewFrame extends JFrame {
 	private ViewPanel pan;
 	
 /** The constant HEIGHT. */	
-private final static int HEIGHT=960;//512;
+private final static int HEIGHT=/*768;*/512;
 
 /** The constant WIDTH. */
-private final static int WIDTH=960;//512;
+private final static int WIDTH=/*1088;*/512;
 	
 /**
 	 * Instantiates a new view frame.
