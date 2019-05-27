@@ -7,7 +7,7 @@ import contract.IView;
 	/**
 	 * <h1>The Class ControllerFacade provides a facade of the Controller component.</h1>
 	 *
-	 * @author Jean-Aymeric DIET jadiet@cesi.fr
+	 * @author Group7
 	 * @version 1.0
 	 */
 	
@@ -37,8 +37,6 @@ public class Controller implements IController {
 	    /**
 	     * Start.
 	     *
-	     * @throws SQLException
-	     *             the SQL exception
 	     */
 	    public void start() {
           

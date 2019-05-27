@@ -5,9 +5,9 @@ import contract.IView;
 /**
  * The Class View.
  *
- * @author Jean-Aymeric Diet
+ * @author Group7
  */
-public final class View implements IView{
+public final class View extends IView{
 
 	/** The frame. */
 	private ViewFrame viewFrame;
@@ -15,17 +15,26 @@ public final class View implements IView{
 	/**
 	 * Instantiates a new view.
 	 *
-	 * @param model
-	 *          the model
 	 */
 	public View() {
 		this.viewFrame = new ViewFrame();
 	}
 
+	/**
+	 * Gets the view frame
+	 *
+	 * @return the view frame
+	 */
 	public ViewFrame getViewFrame() {
 		return viewFrame;
 	}
 
+	/**
+	 * Sets the view frame
+	 *
+	 * @param viewFrame 
+	 *        The new view frame
+	 */
 	public void setViewFrame(ViewFrame viewFrame) {
 		this.viewFrame = viewFrame;
 	}

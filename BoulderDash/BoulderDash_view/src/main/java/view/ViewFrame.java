@@ -3,22 +3,20 @@ package view;
 
 import javax.swing.JFrame;
 
+import contract.IView;
+import controller.KeyBoard;
+
 
 /**
  * The Class ViewFrame.
  *
- * @author Jean-Aymeric Diet
+ * @author Group7
  */
 public class ViewFrame extends JFrame {
 
 /** The panel. */
 	private ViewPanel viewPanel;
 	
-/** The constant HEIGHT. */	
-private final static int HEIGHT=512;
-
-/** The constant WIDTH. */
-private final static int WIDTH=512;
 	
 /**
 	 * Instantiates a new view frame.
@@ -39,9 +37,9 @@ private final static int WIDTH=512;
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("BoulderDash");
 		this.setResizable(false);
-		//this.addKeyListener();
+	    this.addKeyListener(new KeyBoard());
 		this.setContentPane(viewPanel);
-		this.setSize(WIDTH,HEIGHT);
+		this.setSize(IView.WIDTH,IView.HEIGHT);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}

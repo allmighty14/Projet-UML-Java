@@ -3,24 +3,21 @@ package contract;
 /**
  * The Interface IView.
  *
- * @author Jean-Aymeric Diet
+ * @author Group7
  */
-public interface IView {
+public abstract class IView {
 
-	/**
-	 * Gets the view frame.
-	 *
-	 * @return the viewFrame.
-	 */
+	/** The constant HEIGHT. */	
+	public final static int HEIGHT=549;
+
+	/** The constant WIDTH. */
+	public final static int WIDTH=526;
 	
-//	public ViewFrame getViewFrame();
+	/** The x REDUCER. */
+	public static int REDUCER_X=0;
 	
-	/**
-	 * Sets the view frame.
-	 *
-	 * @param viewFrame
-	 *         the new viewFrame    .
-	 */
+	/** The y REDUCER. */
+	public static int REDUCER_Y=0;
 	
-	//public void setViewFrame(ViewFrame viewFrame);
+	
 }

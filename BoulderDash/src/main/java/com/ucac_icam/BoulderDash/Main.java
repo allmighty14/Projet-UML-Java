@@ -1,17 +1,17 @@
 /**
- * @author Jean-Aymeric DIET jadiet@cesi.fr
+ * @author Group7
  * @version 1.0
  */
 package com.ucac_icam.BoulderDash;
 
 import controller.Controller;
-import view.View;
 import model.Model;
+import view.View;
 
 /**
  * The Class Main.
  *
- * @author Jean-Aymeric Diet
+ * @author Group7
  */
 public abstract class Main {
 
@@ -26,6 +26,6 @@ public abstract class Main {
 		 final Controller controller = new Controller(new View(), new Model());
               
 		controller.start();
-		System.out.println("all");
+		//System.out.println("all");
     }
 }

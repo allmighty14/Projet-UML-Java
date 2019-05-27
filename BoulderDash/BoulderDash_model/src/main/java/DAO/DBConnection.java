@@ -9,7 +9,7 @@ import java.sql.Statement;
 /**
  * The Class DBConnection.
  *
- * @author Jean-Aymeric Diet
+ * @author Group7
  */
 
 final class DBConnection {
