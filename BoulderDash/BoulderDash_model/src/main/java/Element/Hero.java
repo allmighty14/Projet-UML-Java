@@ -10,14 +10,23 @@ import contract.IView;
  * @author Group7
  */
 public class Hero extends mobileElement{
-
+	
+	/** The freeze boolean*/
+	private boolean freeze;
+	
+	
 	/**	
 	 * Instantiates a new Hero
 	 * 
 	 */
 	public Hero() {
-		this.x=5*32;
-		this.y=5*32;
+		this.x=6*32;
+		this.y=6*32;
+		this.setMoveup(true);
+		this.setMoveright(true);
+		this.setMovedown(true);
+		this.setMoveleft(true);
+	    this.freeze=false;
 		this.setImage(new ImageIcon("sprites/hero.png").getImage());
 	}
 
@@ -49,21 +58,131 @@ public class Hero extends mobileElement{
 	 *       The new x.
 	 */
      public void setX(int x) {
-		if(x >= 16*32-4*32 || x <= 3*32);
-	    else 
-			this.x = x;
-		//System.out.println(x/32);
+		
+			if(this.isMoveleft()==true) {
+			
+				if(
+					(x < 16*32-4*32 && x > 3*32) || 
+					((x >= 16*32-4*32 || x <= 3*32) && (Model.scene[0][0].getX() == 0) && (this.x < 8*32)) ||
+					((x >= 16*32-4*32 || x <= 3*32) && (Model.scene[0][36].getX() == 15*32) && (this.x > 8*32))
+			            
+				) {
+					
+				freeze=false;
+				this.x = x;		
+				//System.out.println("oui");
+				}
+		
+		else {
+				freeze=true;
+			}
+		}
+    	 
+			else if(this.isMoveright()==true) {
+				if(
+						(x < 16*32-4*32 && x > 3*32) || 
+						((x >= 16*32-4*32 || x <= 3*32) && (Model.scene[0][0].getX() == 0) && (this.x < 8*32)) ||
+						((x >= 16*32-4*32 || x <= 3*32) && (Model.scene[0][36].getX() == 15*32) && (this.x > 8*32))
+			     ) {
+				freeze=false;
+				this.x = x;		
+				//System.out.println("oui");
+				}
+		
+		else {
+				freeze=true;
+			}
+		}
+		
+		
+		
 	}
-     
- 	/**
+    
+     /**
+  	 * Gets the freeze value
+  	 * 
+  	 * @return the freeze boolean
+  	 */
+ 	public boolean isFreeze() {
+		return freeze;
+	}
+
+ 	
+	/**
+	 * 
+	 * @param freeze
+	 *          the new freeze value
+	 */
+	public void setFreeze(boolean freeze) {
+		this.freeze = freeze;
+	}
+
+	/**
  	 * 
  	 * @param y
  	 *       The new y.
  	 */
  	public void setY(int y) {
- 		if(y >= 16*32-4*32 || y <= 3*32);
-	    else 
-			this.y = y;
+ 		
+ 		if(this.isMoveup()==true) {
+			
+			if(
+				(y < 16*32-4*32 && y > 3*32) || 
+				((y >= 16*32-4*32 || y <= 3*32) && (Model.scene[0][0].getY() == 0) && (this.y < 8*32)) ||
+				((y >= 16*32-4*32 || y <= 3*32) && (Model.scene[24][0].getY() == 15*32) && (this.y > 8*32))
+		            
+			) {
+				
+			freeze=false;
+			this.y = y;		
+			//System.out.println("oui");
+			}
+	
+	else {
+			freeze=true;
+		}
+	}
+	 
+		else if(this.isMovedown()==true) {
+			if(
+					(y < 16*32-4*32 && y > 3*32) || 
+					((y >= 16*32-4*32 || y <= 3*32) && (Model.scene[0][0].getY() == 0) && (this.y < 8*32)) ||
+					((y >= 16*32-4*32 || y <= 3*32) && (Model.scene[24][0].getY() == 15*32) && (this.y > 8*32))
+		     ) {
+			freeze=false;
+			this.y = y;		
+			//System.out.println("oui");
+			}
+	
+	else {
+			freeze=true;
+		}
+	}
+
  	}
+ 	
+ 	
+ 	public void collision(Element obstacle) {
+		 if(((this.Zone()[0] == obstacle.Zone()[0] && obstacle.Zone()[1] == this.Zone()[1]) && (this.Zone()[2] == obstacle.Zone()[3]))) {
+			 this.setMoveup(false);
+		 }
+			 
+		 
+		 if((this.Zone()[0] == obstacle.Zone()[0] && obstacle.Zone()[1] == this.Zone()[1]) && (this.Zone()[3] == obstacle.Zone()[2])){
+			this.setMovedown(false);
+		}
+			
+		 if((obstacle.Zone()[2] == this.Zone()[2] && this.Zone()[3] == obstacle.Zone()[3]) && (obstacle.Zone()[1] == this.Zone()[0])){
+			this.setMoveleft(false);			
+		 }
+		 
+		 if((obstacle.Zone()[2] == this.Zone()[2] && this.Zone()[3] == obstacle.Zone()[3]) && (obstacle.Zone()[0] == this.Zone()[1])){
+			this.setMoveright(false);
+		}
+		 
+
+       }
+
+
 	
 }

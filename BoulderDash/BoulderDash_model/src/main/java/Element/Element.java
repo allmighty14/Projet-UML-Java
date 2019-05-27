@@ -18,6 +18,7 @@ public abstract class Element {
     /**The image*/
     protected Image image;
 
+
    
     
     /**
@@ -74,5 +75,21 @@ public abstract class Element {
 		this.image = image;
 	}
     
-    
+	/**
+	 * Gives the Element's zone
+	 * 
+	 * @return a tab containing the zone
+	 */
+	public int [] Zone() {
+		 
+		 int [] tab = new int[4];
+
+				tab[0]=this.getX();
+				tab[1]=this.getX()+this.getImage().getWidth(null);
+				tab[2]=this.getY();
+				tab[3]=this.getY()+this.getImage().getHeight(null);
+			//	System.out.println(tab[0]+" "+tab[1]+" "+tab[2]+" "+tab[3]);
+		return tab;
+
+	  }
 }

@@ -34,7 +34,7 @@ public class ViewPanel extends JPanel {
 	}
 	
 	/**
-	 *  Reads the file containing the level.
+	 *  Reads the file containing the map level.
 	 */
 	public void readFile() {
 		try{
@@ -115,11 +115,25 @@ public class ViewPanel extends JPanel {
 				}
 			}
 		}
+
+	/*	for(int j=0; j<25; j++) {
+ 		    for(int i=0; i<37; i++){
+ 		    	
+ 		    	if(
+ 		    			(Model.scene[j][i].getClass().toString().equals(new Wall().getClass().toString())) ||
+ 		    			(Model.scene[j][i].getClass().toString().equals(new Rock().getClass().toString())) ||
+ 		    			(Model.scene[j][i].getClass().toString().equals(new Diamond().getClass().toString()))
+ 		    			
+ 		    			) {
+ 		    		KeyBoard.hero.collision(Model.scene[j][i]);
+ 		    	}
+ 			 }
+ 		    }*/
 		
-		//g.drawImage(new Ground().getImage(),0,0,this);
-		
-		//g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		g.drawImage(KeyBoard.hero.getImage(),KeyBoard.hero.getX(),KeyBoard.hero.getY(),this);
+		
+		 
+		
 		repaint();
 	}
 }
