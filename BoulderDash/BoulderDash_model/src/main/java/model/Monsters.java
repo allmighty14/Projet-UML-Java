@@ -1,6 +1,6 @@
 package model;
 
-public class Monstres extends Move{
+public class Monsters extends Move{
 
 	private int posX[] = new int [34] ;
 	private int posY[] = new int [24];
@@ -22,7 +22,7 @@ public class Monstres extends Move{
 	}
 
 	
-	public Monstres() {
+	public Monsters() {
 		// TODO Auto-generated constructor stub
 	}
 	

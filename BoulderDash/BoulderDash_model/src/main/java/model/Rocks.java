@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Rochers extends Move{
+public class Rocks extends Move{
 	
 	private Image img;
 	
@@ -36,7 +36,7 @@ public class Rochers extends Move{
 		this.posY[i] = posY;
 	}
 
-	public Rochers() {
+	public Rocks() {
 		// TODO Auto-generated constructor stub
 		try {
 			this.img = ImageIO.read(new File("D:\\Prosits\\Prosits\\2nd Semestre\\UE 2.2 Java\\Projet Java 2\\Images\\roche.png"));

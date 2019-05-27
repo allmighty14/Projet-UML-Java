@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Diamants extends Move {
+public class Diamond extends Move {
 
 	private int posX[] = new int [35] ;
 	private int posY[] = new int [24];
@@ -37,7 +37,7 @@ public class Diamants extends Move {
 
 
 
-	public Diamants() {
+	public Diamond() {
 		// TODO Auto-generated constructor stub
 		try {
 			this.img[0] = ImageIO.read(new File("D:\\Prosits\\Prosits\\2nd Semestre\\UE 2.2 Java\\Projet Java 2\\Images\\diam1.png"));

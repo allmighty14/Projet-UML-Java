@@ -23,10 +23,10 @@ public class ViewPanel extends JPanel {
 	BGround g2 = new BGround();
 	Ground g1=new Ground();
 	Wall w = new Wall();
-	Rochers r = new Rochers();
+	Rocks r = new Rocks();
     Personnage p = new Personnage();
-    Diamants d = new Diamants();
-    Monstres mm = new Monstres();
+    Diamond d = new Diamond();
+    Monsters mm = new Monsters();
     int i =0;
     int a =0;
     
@@ -223,6 +223,7 @@ public class ViewPanel extends JPanel {
 		        	        		else if(line.charAt(j) == '*') {
 			        	        		    	d.setPosY((i*31), i);
 				        	        		    d.setPosX((j*31), j);
+				        	        		    g.drawImage(d.getImg(0), d.getPosX(j), d.getPosY(i),this );
 		        	        		}
 		        	        		
 		        	        		else if(line.charAt(j) == 'M') {
