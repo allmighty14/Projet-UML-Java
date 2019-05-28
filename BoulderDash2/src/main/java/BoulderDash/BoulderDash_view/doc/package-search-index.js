@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.ucac_icam.BoulderDash"},{"l":"contract"},{"l":"controller"},{"l":"DAO"},{"l":"Element"},{"l":"model"}]

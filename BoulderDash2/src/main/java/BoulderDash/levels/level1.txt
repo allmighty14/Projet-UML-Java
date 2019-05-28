@@ -1,0 +1,57 @@
+  public void readFile() {
+ try{
+  InputStream flux=new FileInputStream("levels/level4.txt"); 
+  InputStreamReader lecture=new InputStreamReader(flux);
+  BufferedReader buff=new BufferedReader(lecture);
+  String ligne;
+  int i=0;
+  
+  while ((ligne=buff.readLine())!=null){
+      for(int j=0;j<37;j++) {
+       if(ligne.charAt(j) == 'G') {
+       Model.scene[i][j]=new Ground(); 
+       }
+       
+       else if(ligne.charAt(j) == 'W') {
+        Model.scene[i][j]=new Wall();   
+        }
+       
+       else if(ligne.charAt(j) == 'O') {
+        Model.scene[i][j]=new Rock();   
+        }
+       
+       else if(ligne.charAt(j) == 'M') {
+        Model.scene[i][j]=new Monster();   
+        }
+       
+       else if(ligne.charAt(j) == '*') {
+        Model.scene[i][j]=new Diamond();   
+        }
+       else if(ligne.charAt(j) == ' ') {
+        Model.scene[i][j]=new Darkground();   
+        }
+       
+       else {
+        Model.scene[i][j] = new Ground();
+       }
+       
+       
+       //System.out.println(ligne.charAt(j));
+       //System.out.println(Model.scene[i][j]);
+       
+       Model.scene[i][j].setX(32*(j));
+       Model.scene[i][j].setY(32*(i));
+      }
+      
+     // System.out.println("\n");
+      i++;
+  }
+  buff.close(); 
+  }  
+  catch (Exception e){
+  System.out.println(e.toString());
+  }
+
+}
+
+  
