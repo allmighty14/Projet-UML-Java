@@ -1,35 +1,41 @@
-package controller;
+package view;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import model.Personnage;
-import view.ViewPanel;
+import model.*;
+import contract.IView;
+
 
 public class KeyBoard  implements KeyListener{
 	
-	Personnage p1;
-	ViewPanel p;
-
+	//Personnage p;
+	
+	ViewPanel p; 
+	
 	public KeyBoard(ViewPanel p) {
 		// TODO Auto-generated constructor stub
-		this.p=p;
+	    this.p = p;
 	}
 
 	public void keyPressed(KeyEvent k) {
 		// TODO Auto-generated method stub
 		if (k.getKeyCode()== KeyEvent.VK_UP) {
-			p1.moveUp();
+			p.moveUp();
+			
 			
 		}
 		if (k.getKeyCode()== KeyEvent.VK_DOWN) {
-			p1.moveDown();
+			
+			p.moveDown();
 		}
 		if (k.getKeyCode()== KeyEvent.VK_LEFT) {
-			p1.moveLeft();
+			p.moveLeft();
+
 		}
 		if (k.getKeyCode()== KeyEvent.VK_RIGHT) {
-			p1.moveRight();
+		    p.moveRight();
 		}
 	}
 

@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javafx.scene.paint.Color;
 import model.*;
 
+
 /**
  * The Class ViewPanel.
  *
@@ -78,8 +79,8 @@ public class ViewPanel extends JPanel {
 						 line = reader.readLine();
 		        	    
 		        	   while(line!=null) {
-		        	   	System.out.println(line);
-		        	    	//for(int i=0; i<24; i++) {
+		        //   	System.out.println(line);
+		        	   // 	for(int i=0; i<24; i++) {
 		        	        	for(int j=0; j<35; j++) {
 		        	        	   /* switch(line.charAt(j)) {
 		        	        	    case 'G':
@@ -108,12 +109,13 @@ public class ViewPanel extends JPanel {
 				        	        		    g.drawImage(r.getImg(), r.getPosX(j), r.getPosY(i),this );
 		        	        		}
 		        	        		
-		        	        		else if(line.charAt(j) == 'H') {
-			        	        		    	p.setPosY((i*31));
-			        	        		    	p.setPosX((j*31));
-			        	        		    	g.drawImage(p.getImg(), p.getPosX(), p.getPosY(),this );
+		        	        		/*else if(line.charAt(j) == 'H') {
+		        	        			KeyBoard.p1.setPosY((i*31));
+			        	        		    	KeyBoard.p1.setPosX((j*31));
+			        	        		    	g.drawImage(KeyBoard.p1.getImg(), KeyBoard.p1.getPosX(), KeyBoard.p1.getPosY(),this );
+			        	        		    	System.out.println(KeyBoard.p1.getPosY());
 			        	            }
-	        	        			
+	        	        			*/
 		        	        		else if(line.charAt(j) == '*') {
 			        	        		    	d.setPosY((i*31), i);
 				        	        		    d.setPosX((j*31), j);
@@ -127,11 +129,14 @@ public class ViewPanel extends JPanel {
 		        	        	   
 		        	            System.out.print(line.charAt(j));
 		        	            }
-		        	        	a++;
+		        	    	
+		        	        	//a++;
 		        	        	i++;
 		        	        	System.out.println(""); 
 		        	        	line = reader.readLine();
 		        	    }
+		        	   
+		        	   
 		        	    reader.close();
 		        	    
 		        	    
@@ -142,12 +147,44 @@ public class ViewPanel extends JPanel {
 					}
 	        }
 	        
-	        g.drawImage(p.getImg(), p.getPosX(), p.getPosY(),this );
+	      	g.drawImage(p.getImg(), p.getPosX(), p.getPosY(),this );
+	      
+	        
+	       // repaint();
 	        
 	       
 		}
+
+	  
+	public  void moveUp() {
+		int a = p.getPosY();
+		a--;
+		p.setPosY(a);
+		this.repaint();
+	}
+	
+	public  void moveDown() {
+		int a = p.getPosY();
+		a++;
+		p.setPosY(a);
+		this.repaint();
+	}
+	
+	public  void moveLeft() {
+		int a = p.getPosX();
+		a--;
+		p.setPosX(a);
+		this.repaint();
+	}
+	
+	public  void moveRight() {
+		int a = p.getPosX();
+		a++;
+		p.setPosX(a);
+		this.repaint();
+	}
+
 }
-	    	 
 
 	
 	

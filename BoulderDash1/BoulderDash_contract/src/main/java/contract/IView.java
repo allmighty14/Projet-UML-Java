@@ -23,4 +23,7 @@ public interface IView {
 	 */
 	
 	//public void setViewFrame(ViewFrame viewFrame);
+	
+	
+	
 }

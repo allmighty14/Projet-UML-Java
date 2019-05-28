@@ -3,6 +3,9 @@ package view;
 
 import javax.swing.JFrame;
 
+import contract.IView;
+
+
 
 /**
  * The Class ViewFrame.
@@ -15,10 +18,10 @@ public class ViewFrame extends JFrame {
 	private ViewPanel pan;
 	
 /** The constant HEIGHT. */	
-private final static int HEIGHT=/*768;*/512;
+private final static int HEIGHT=/*780;*/531;
 
 /** The constant WIDTH. */
-private final static int WIDTH=/*1088;*/512;
+private final static int WIDTH=/*1088;*/533;
 	
 /**
 	 * Instantiates a new view frame.
@@ -36,8 +39,8 @@ private final static int WIDTH=/*1088;*/512;
 	 */
 	private void buildViewFrame() {
 	    pan = new ViewPanel();
-	    //pan.addKeyListener(new KeyBoard(pan));
-	    //pan.setFocusable(true);
+	    this.addKeyListener(new KeyBoard(pan));
+	  //  pan.setFocusable(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("BoulderDash");
 		this.setResizable(false);

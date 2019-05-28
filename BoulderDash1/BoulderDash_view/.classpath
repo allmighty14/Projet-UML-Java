@@ -25,5 +25,6 @@
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/BoulderDash_contract"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BoulderDash_model"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/BoulderDash_controller"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -10,11 +10,10 @@ import javax.imageio.ImageIO;
 
 
 public class Personnage extends Move {
- 
 
 	
-	private int posX;
-	private int posY;
+	private int posX = 186;
+	private int posY = 124;
 
 	public int getPosX() {
 		return posX;
@@ -52,7 +51,7 @@ public class Personnage extends Move {
 		}
 	}
 
-	public void moveDown() {
+	/*public void moveDown() {
 		int a = getPosY();
 		a++;
 		setPosY(a);
@@ -76,5 +75,5 @@ public class Personnage extends Move {
 		a++;
 		setPosX(a);
 
-	}
+	}*/
 }
