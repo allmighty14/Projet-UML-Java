@@ -62,35 +62,14 @@ public class ViewPanel extends JPanel {
 	    	 i+=31;
 	     }
 
-			File file = new File("D:\\Prosits\\Prosits\\2nd Semestre\\UE 2.2 Java\\Projet Java 2\\1erNiveau.txt");
-	        if(!file.exists()) {
-	        	try {
-					file.createNewFile();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	        }
-	        
-	        else {
+			File file = new File("D:\\Prosits\\Prosits\\2nd Semestre\\UE 2.2 Java\\Projet Java 2\\1stLevel.txt");
 	        		BufferedReader reader;
 					try {
 						reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
 						 line = reader.readLine();
-		        	    
-		        	   while(line!=null) {
-		        //   	System.out.println(line);
-		        	   // 	for(int i=0; i<24; i++) {
+		        	    	for(int i=0; i<24; i++) {
 		        	        	for(int j=0; j<35; j++) {
-		        	        	   /* switch(line.charAt(j)) {
-		        	        	    case 'G':
-		        	        	    	g1.setPosY((i*31), a);
-		        	        		    g1.setPosX((j*31), j);
-		        	        	    	break;
-		        	        	    case  'W':
-		        	        	    	
-		        	        	    	break;
-		        	        		*/if(line.charAt(j) == 'G') {
+		        	        		if(line.charAt(j) == 'G') {
 		        	        		    	g1.setPosY((i*31), i);
 			        	        		    g1.setPosX((j*31), j);
 			        	        			g.drawImage(g1.getImg(), g1.getPosX(j), g1.getPosY(i),this );
@@ -108,14 +87,6 @@ public class ViewPanel extends JPanel {
 				        	        		    r.setPosX((j*31), j);
 				        	        		    g.drawImage(r.getImg(), r.getPosX(j), r.getPosY(i),this );
 		        	        		}
-		        	        		
-		        	        		/*else if(line.charAt(j) == 'H') {
-		        	        			KeyBoard.p1.setPosY((i*31));
-			        	        		    	KeyBoard.p1.setPosX((j*31));
-			        	        		    	g.drawImage(KeyBoard.p1.getImg(), KeyBoard.p1.getPosX(), KeyBoard.p1.getPosY(),this );
-			        	        		    	System.out.println(KeyBoard.p1.getPosY());
-			        	            }
-	        	        			*/
 		        	        		else if(line.charAt(j) == '*') {
 			        	        		    	d.setPosY((i*31), i);
 				        	        		    d.setPosX((j*31), j);
@@ -129,57 +100,61 @@ public class ViewPanel extends JPanel {
 		        	        	   
 		        	            System.out.print(line.charAt(j));
 		        	            }
-		        	    	
-		        	        	//a++;
-		        	        	i++;
 		        	        	System.out.println(""); 
 		        	        	line = reader.readLine();
 		        	    }
-		        	   
-		        	   
 		        	    reader.close();
 		        	    
-		        	    
-					
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-	        }
 	        
 	      	g.drawImage(p.getImg(), p.getPosX(), p.getPosY(),this );
-	      
-	        
-	       // repaint();
-	        
+
+	      	for(int i=0; i<24; i++) {
+	        	for(int j=0; j<35; j++) {
+	        		if (p.getPosX()== g1.getPosX(j) && p.getPosY() == g1.getPosX(i)) {
+	        		//	g1.setPosY((0), i);
+        		   //     g1.setPosX((0), j);
+        		        g.drawImage(g2.getImg(), g1.getPosX(j) , g1.getPosY(i), this);
+        		    	g.drawImage(p.getImg(), p.getPosX(), p.getPosY(),this );
+
+	        			System.out.println("Je suis là");
+	        			System.out.println(g2.getPosX());
+	        			System.out.println(p.getPosX());
+	        			
+	        		}
+	        	}
+	      	}
 	       
 		}
 
 	  
 	public  void moveUp() {
 		int a = p.getPosY();
-		a--;
+		a-=31;
 		p.setPosY(a);
 		this.repaint();
 	}
 	
 	public  void moveDown() {
 		int a = p.getPosY();
-		a++;
+		a+=31;
 		p.setPosY(a);
 		this.repaint();
 	}
 	
 	public  void moveLeft() {
 		int a = p.getPosX();
-		a--;
+		a-=31;
 		p.setPosX(a);
 		this.repaint();
 	}
 	
 	public  void moveRight() {
 		int a = p.getPosX();
-		a++;
+		a+=31;
 		p.setPosX(a);
 		this.repaint();
 	}

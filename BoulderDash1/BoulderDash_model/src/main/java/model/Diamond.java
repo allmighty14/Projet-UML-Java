@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 public class Diamond extends Move {
 
 	private int posX[] = new int [35] ;
-	private int posY[] = new int [24];
+	private int posY[] = new int [35];
 
 	public int getPosX(int j) {
 		return posX[j];
