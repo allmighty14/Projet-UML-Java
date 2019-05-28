@@ -1,18 +1,28 @@
 package view;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Observable;
-import java.util.Observer;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import javafx.scene.paint.Color;
-import model.*;
 
+import Element.Darkground;
+import Element.Diamond;
+import Element.Element;
+import Element.Ground;
+import Element.Hero;
+import Element.Monster;
+import Element.Rock;
+import Element.Wall;
+//import controller.Keyboard;
+import model.Model;
 
 /**
  * The Class ViewPanel.
@@ -20,19 +30,9 @@ import model.*;
  * @author Jean-Aymeric Diet
  */
 public class ViewPanel extends JPanel {
-	
-	BGround g2 = new BGround();
-	Ground g1=new Ground();
-	Wall w = new Wall();
-	Rocks r = new Rocks();
-    Personnage p = new Personnage();
-    Diamond d = new Diamond();
-    Monsters mm = new Monsters();
-    int i =0;
-    int a =0;
-    
-	String line;
-	
+	Hero h = new Hero();
+	//Hero hero = new Hero();
+	//Keyboard keyboard = new Keyboard();
 	/**
 	 * Instantiates a new view panel.
 	 *
@@ -40,8 +40,73 @@ public class ViewPanel extends JPanel {
 	 *          the view frame
 	 */
 	public ViewPanel() {
-		Model m = new Model();
+		Model.scene = new Element[24][35];
+		
+		readFile();
+
 	}
+	
+	/*
+	 * Reading of the second level
+	 */
+	 public void readFile() {
+		 try{
+		  InputStream flux=new FileInputStream("D:\\Prosits\\Prosits\\2nd Semestre\\UE 2.2 Java\\Projet Java 2\\1stLevel.txt"); 
+		  InputStreamReader lecture=new InputStreamReader(flux);
+		  BufferedReader buff=new BufferedReader(lecture);
+		  String ligne;
+		  int i=0;
+		  
+		  while ((ligne=buff.readLine())!=null){
+		      for(int j=0;j<35;j++) {
+		       if(ligne.charAt(j) == 'G') {
+		       Model.scene[i][j]=new Ground(); 
+		       }
+		       
+		       else if(ligne.charAt(j) == 'W') {
+		        Model.scene[i][j]=new Wall();   
+		        }
+		       
+		       else if(ligne.charAt(j) == 'O') {
+		        Model.scene[i][j]=new Rock();   
+		        }
+		       
+		       else if(ligne.charAt(j) == 'M') {
+		        Model.scene[i][j]=new Monster();   
+		        }
+		       
+		       else if(ligne.charAt(j) == '*') {
+		        Model.scene[i][j]=new Diamond();   
+		        }
+		       else if(ligne.charAt(j) == ' ') {
+		        Model.scene[i][j]=new Darkground();   
+		        }
+		      /* else if(ligne.charAt(j) == 'H') {
+			         h = new Hero();   
+			    }*/
+		       
+		       else {
+		        Model.scene[i][j] = new Ground();
+		       }
+		       
+		       
+		       System.out.print(ligne.charAt(j));
+		       //System.out.println(Model.scene[i][j]);
+		       
+		       Model.scene[i][j].setX(31*(j));
+		       Model.scene[i][j].setY(31*(i));
+		      }
+		      
+		      System.out.println("");
+		      i++;
+		  }
+		  buff.close(); 
+		  }  
+		  catch (Exception e){
+		  System.out.println(e.toString());
+		  }
+
+		}
 
 	/*
 	 * (non-Javadoc)
@@ -49,117 +114,135 @@ public class ViewPanel extends JPanel {
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
 	@Override
-	protected void paintComponent(final Graphics g) {
-	     for(int i=0; i<=768; i++) {
-	    	 for(int j=0; j<=1088; j++) {
-		     g2.setPosX(j);
-		     g2.setPosY(i);
-		     g.drawImage(g2.getImg(), g2.getPosX() , g2.getPosY(), this);
-		
-		     j+=31;
-		     
-	    	 }
-	    	 i+=31;
-	     }
+	protected void paintComponent(final Graphics g) {			
+			
 
-			File file = new File("D:\\Prosits\\Prosits\\2nd Semestre\\UE 2.2 Java\\Projet Java 2\\1stLevel.txt");
-	        		BufferedReader reader;
-					try {
-						reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-						 line = reader.readLine();
-		        	    	for(int i=0; i<24; i++) {
-		        	        	for(int j=0; j<35; j++) {
-		        	        		if(line.charAt(j) == 'G') {
-		        	        		    	g1.setPosY((i*31), i);
-			        	        		    g1.setPosX((j*31), j);
-			        	        			g.drawImage(g1.getImg(), g1.getPosX(j), g1.getPosY(i),this );
-
-		        	        		}
-		        	        		
-		        	        		else if(line.charAt(j) == 'W') {
-			        	        		    	w.setPosY((i*31), i);
-				        	        		    w.setPosX((j*31), j);
-				        	        		    g.drawImage(w.getImg(), w.getPosX(j), w.getPosY(i),this );
-			        	        	}
-		        	        		
-		        	        		else if(line.charAt(j) == 'O') {
-			        	        		    	r.setPosY((i*31), i);
-				        	        		    r.setPosX((j*31), j);
-				        	        		    g.drawImage(r.getImg(), r.getPosX(j), r.getPosY(i),this );
-		        	        		}
-		        	        		else if(line.charAt(j) == '*') {
-			        	        		    	d.setPosY((i*31), i);
-				        	        		    d.setPosX((j*31), j);
-				        	        		    g.drawImage(d.getImg(0), d.getPosX(j), d.getPosY(i),this );
-		        	        		}
-		        	        		
-		        	        		else if(line.charAt(j) == 'M') {
-			        	        		    	mm.setPosY((i*31), i);
-				        	        		   mm.setPosX((j*31), j);
-				        	        }
-		        	        	   
-		        	            System.out.print(line.charAt(j));
-		        	            }
-		        	        	System.out.println(""); 
-		        	        	line = reader.readLine();
-		        	    }
-		        	    reader.close();
-		        	    
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-	        
-	      	g.drawImage(p.getImg(), p.getPosX(), p.getPosY(),this );
-
-	      	for(int i=0; i<24; i++) {
-	        	for(int j=0; j<35; j++) {
-	        		if (p.getPosX()== g1.getPosX(j) && p.getPosY() == g1.getPosX(i)) {
-	        		//	g1.setPosY((0), i);
-        		   //     g1.setPosX((0), j);
-        		        g.drawImage(g2.getImg(), g1.getPosX(j) , g1.getPosY(i), this);
-        		    	g.drawImage(p.getImg(), p.getPosX(), p.getPosY(),this );
-
-	        			System.out.println("Je suis là");
-	        			System.out.println(g2.getPosX());
-	        			System.out.println(p.getPosX());
-	        			
-	        		}
-	        	}
-	      	}
-	       
+		/*
+		 * Draw of the image in the table scene
+		 */
+		for(int i = 0; i<24; i++) {
+			for(int j = 0; j<35; j++) {
+				if(Model.scene[i][j] != null) {
+					g.drawImage(Model.scene[i][j].getImage(),Model.scene[i][j].getX(),Model.scene[i][j].getY(),this);
+					}		
+				}
 		}
+		/*Hero.lab.setBounds(hero.getX(), hero.getY(), 256, 256);
+		Hero.lab.setIcon(new ImageIcon("D:\\Prosits\\Prosits\\2nd Semestre\\UE 2.2 Java\\Projet Java 2\\pers.png"));*/
+		g.drawImage(h.getImg(),h.getX(), h.getY(),this);
+		repaint();
 
-	  
-	public  void moveUp() {
-		int a = p.getPosY();
+		
+		//g.drawImage(img, 0, 0, this);
+		//g.drawImage(new ImageIcon("sprites/ground.png").getImage(),this.getHeight(),this.getWidth(), this);
+		//g.setColor(Color.RED);
+		//g.fillRect(0, 0, this.getWidth(), this.getHeight());
+		
+		
+	}
+	
+	public void moveUp() {
+		int a = h.getY();
 		a-=31;
-		p.setPosY(a);
-		this.repaint();
+		h.setY(a);
+		
+		for(int i=0;i<24;i++) {
+			for(int j=0; j<35; j++) {
+				    if(Model.scene[i][j].getClass().toString().equals(new Ground().getClass().toString())) {
+					System.out.println(Model.scene[i][j].toString());
+					    if(h.getX()==Model.scene[i][j].getX() && h.getY()==Model.scene[i][j].getY()) {
+					    	int c = Model.scene[i][j].getX();
+					    	int b= Model.scene[i][j].getY();
+					    	Model.scene[i][j]= new Darkground();
+					    	Model.scene[i][j].setX(c);
+					    	Model.scene[i][j].setY(b);
+					    	
+					      break;
+				      }
+				    }
+			}
+		}
 	}
 	
-	public  void moveDown() {
-		int a = p.getPosY();
+	public void moveDown() {
+		int a = h.getY();
 		a+=31;
-		p.setPosY(a);
-		this.repaint();
+		h.setY(a);
+		
+		for(int i=0;i<24;i++) {
+			for(int j=0; j<35; j++) {
+				    if(Model.scene[i][j].getClass().toString().equals(new Ground().getClass().toString())) {
+					System.out.println(Model.scene[i][j].toString());
+					    if(h.getX()==Model.scene[i][j].getX() && h.getY()==Model.scene[i][j].getY()) {
+					    	int c = Model.scene[i][j].getX();
+					    	int b= Model.scene[i][j].getY();
+					    	Model.scene[i][j]= new Darkground();
+					    	Model.scene[i][j].setX(c);
+					    	Model.scene[i][j].setY(b);
+					    	
+					      break;
+				      }
+				    }
+			}
+		}
 	}
-	
-	public  void moveLeft() {
-		int a = p.getPosX();
+
+	public void moveLeft() {
+		int a = h.getX();
 		a-=31;
-		p.setPosX(a);
-		this.repaint();
+		h.setX(a);
+	//	repaint();
+		
+		for(int i=0;i<24;i++) {
+			for(int j=0; j<35; j++) {
+				    if(Model.scene[i][j].getClass().toString().equals(new Ground().getClass().toString())) {
+					System.out.println(Model.scene[i][j].toString());
+					    if(h.getX()==Model.scene[i][j].getX() && h.getY()==Model.scene[i][j].getY()) {
+					    	int c = Model.scene[i][j].getX();
+					    	int b= Model.scene[i][j].getY();
+					    	Model.scene[i][j]= new Darkground();
+					    	Model.scene[i][j].setX(c);
+					    	Model.scene[i][j].setY(b);
+					    	
+					      break;
+				      }
+			}
+			}
+			}
+	//	repaint();
 	}
-	
-	public  void moveRight() {
-		int a = p.getPosX();
+
+	public void moveRight() {
+		int a = h.getX();
 		a+=31;
-		p.setPosX(a);
-		this.repaint();
+		h.setX(a);
+		
+		for(int i=0;i<24;i++) {
+			for(int j=0; j<35; j++) {
+				    if(Model.scene[i][j].getClass().toString().equals(new Ground().getClass().toString())) {
+					System.out.println(Model.scene[i][j].toString());
+					    if(h.getX()==Model.scene[i][j].getX() && h.getY()==Model.scene[i][j].getY()) {
+					    	int c = Model.scene[i][j].getX();
+					    	int b= Model.scene[i][j].getY();
+					    	Model.scene[i][j]= new Darkground();
+					    	Model.scene[i][j].setX(c);
+					    	Model.scene[i][j].setY(b);
+					    	
+					      break;
+				      }
+					    if(Model.scene[i][j].getClass().toString().equals(new Wall().getClass().toString())) {
+							System.out.println(Model.scene[i][j].toString());
+							    if(h.getX()>=(Model.scene[i][j].getX()-31)) {
+							    	h.setX((Model.scene[i][j].getX()-31));
+							    }
+					    }
+				    }
+			}
+		}
 	}
+
+
+
 
 }
 
-	
-	

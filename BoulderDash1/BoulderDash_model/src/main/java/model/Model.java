@@ -2,17 +2,25 @@ package model;
 
 import java.sql.SQLException;
 import java.util.Observable;
+
+import Element.Element;
 import contract.IModel;
 
 
 /**
  * The Class Model.
  *
- * @author Group 7
+ * @author Roch MBANYA
  */
 public final class Model extends Observable implements IModel {
 
-	public char caract[][] = new char[24][34];
+	public static Element [][] scene;
+	
+	public void Model() {
+		
+		
+
+	}
 	
 	/**
      * Gets the observable.
@@ -26,9 +34,5 @@ public final class Model extends Observable implements IModel {
 	 */
 	public Observable getObservable() {
 		return this;
-	}
-	
-	public void scene() {
-		
 	}
 }
