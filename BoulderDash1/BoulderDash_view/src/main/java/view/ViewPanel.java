@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 
 import Element.Darkground;
 import Element.Diamond;
+import Element.DiamondState;
 import Element.Element;
 import Element.Ground;
 import Element.Hero;
@@ -128,6 +129,14 @@ public class ViewPanel extends JPanel {
 				}
 		}
 		g.drawImage(h.getImg(),h.getX(), h.getY(),this);
+		
+		
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		repaint();
 
 		
@@ -138,6 +147,7 @@ public class ViewPanel extends JPanel {
 	 */
 	
 	public void moveUp() {
+		if (Model.isC() ==true) {
 		h.setImg(h.getImg3());
 		int a = h.getY();
 		a-=31;
@@ -158,10 +168,12 @@ public class ViewPanel extends JPanel {
 				      }
 				    }
 			}
+			}
 		}
 	}
 	
 	public void moveDown() {
+		if (Model.isD() ==true) {
 		h.setImg(h.getImg4());
 		int a = h.getY();
 		a+=31;
@@ -181,11 +193,13 @@ public class ViewPanel extends JPanel {
 					      break;
 				      }
 				    }
+				}
 			}
 		}
 	}
 
 	public void moveLeft() {
+		if (Model.isA()== true) {
 		h.setImg(h.getImg1());
 		int a = h.getX();
 		a-=31;
@@ -205,18 +219,20 @@ public class ViewPanel extends JPanel {
 					    	
 					      break;
 				      }
+				    }
+				}
 			}
-			}
-			}
+		}
 	//	repaint();
 	}
 
 	public void moveRight() {
+		if (Model.isB()== true) {
 		h.setImg(h.getImg2());
 		int a = h.getX();
 		a+=31;
 		h.setX(a);
-		System.out.print(h.getX()+" :: ");
+		//System.out.print(h.getX()+" :: ");
 		for(int i=0;i<24;i++) {
 			for(int j=0; j<35; j++) {
 				    if(Model.scene[i][j].getClass().toString().equals(new Ground().getClass().toString())) {
@@ -232,9 +248,9 @@ public class ViewPanel extends JPanel {
 				      }
 					    
 				    }
+				}
 			}
 		}
-			
 	}
 
 

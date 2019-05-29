@@ -17,7 +17,7 @@ public abstract class Element {
     protected int y;
     
     /**The image*/
-    protected Image image;
+    protected  Image image;
 
 
    

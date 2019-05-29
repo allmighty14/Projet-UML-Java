@@ -76,7 +76,7 @@ public class Hero {
 	}
 
 	
-	public  int getY() {
+	public static  int getY() {
 	return y;
 	}
 	
