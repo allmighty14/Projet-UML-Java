@@ -5,13 +5,20 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import Element.*;
-import contract.IView;
+import Element.Darkground;
+import Element.Diamond;
+import Element.Element;
+import Element.Ground;
+import Element.Monster;
+import Element.Rock;
+import Element.Wall;
+import contract.IModel;
 import controller.KeyBoard;
+import controller.Controller;
 import model.Model;
 
 /**
@@ -30,6 +37,9 @@ public class ViewPanel extends JPanel {
 	 */
 	public ViewPanel() {
 		Model.scene = new Element[25][37];
+		Model.allRocks=new ArrayList<Rock>();
+		Model.allMonsters=new ArrayList<Monster>();
+        Model.allDiamonds=new ArrayList<Diamond>();
 		readFile();
 	}
 	
@@ -55,15 +65,18 @@ public class ViewPanel extends JPanel {
 				    	}
 			    	
 			    	else if(ligne.charAt(j) == 'O') {
-			    		Model.scene[i][j]=new Rock();   
+			    		Model.scene[i][j]=new Rock(); 
+			    		Model.allRocks.add((Rock) Model.scene[i][j]);
 				    	}
 			    	
 			    	else if(ligne.charAt(j) == 'M') {
-			    		Model.scene[i][j]=new Monster();   
+			    		Model.scene[i][j]=new Monster(); 
+			    	    Model.allMonsters.add((Monster) Model.scene[i][j]);
 				    	}
 			    	
 			    	else if(ligne.charAt(j) == '*') {
-			    		Model.scene[i][j]=new Diamond();   
+			    		Model.scene[i][j]=new Diamond(); 
+			    		Model.allDiamonds.add((Diamond) Model.scene[i][j]);
 				    	}
 			    	else if(ligne.charAt(j) == ' ') {
 			    		Model.scene[i][j]=new Darkground();   
@@ -74,23 +87,27 @@ public class ViewPanel extends JPanel {
 			    	}
 			    	
 			    	
-			    	//System.out.println(ligne.charAt(j));
+			    	System.out.print(ligne.charAt(j));
 			    	//System.out.println(Model.scene[i][j]);
 			    	
 		    		Model.scene[i][j].setX(32*(j));
 		    		Model.scene[i][j].setY(32*(i));
 			    }
 			    
-			   // System.out.println("\n");
+			    System.out.println("");
 			    i++;
 			}
-			buff.close(); 
+			System.out.println(Model.allRocks.size());
+			buff.close();
+			
 			}		
 			catch (Exception e){
-			System.out.println(e.toString());
+			e.printStackTrace();
 			}
 
 	}
+	
+	
 
 	/*
 	 * (non-Javadoc)
@@ -106,7 +123,13 @@ public class ViewPanel extends JPanel {
 			}
 		}*/
 	
+		for(int a=0;a<Model.allRocks.size();a++) {
+            Model.allRocks.get(a).fixBooleans(a);
+			}
+		System.out.println(Model.allRocks.get(9).getX()/32+" "+Model.allRocks.get(9).getY()/32);
+		System.out.println(Model.allRocks.get(9).blocking_L+" "+Model.allRocks.get(9).blocking_R+" "+Model.allRocks.get(9).blocking_D);
 		
+		//System.out.println(Model.allRocks.get(0).blocking_L+" "+Model.allRocks.get(0).blocking_R+" "+Model.allRocks.get(0).blocking_D);
 		
 		for(int i=0;i<25;i++) {
 			for(int j=0;j<37;j++) {
@@ -130,9 +153,17 @@ public class ViewPanel extends JPanel {
  			 }
  		    }*/
 		
+		
+	
 		g.drawImage(KeyBoard.hero.getImage(),KeyBoard.hero.getX(),KeyBoard.hero.getY(),this);
 		
-		 
+		
+		try {
+			Thread.sleep(0);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		repaint();
 	}

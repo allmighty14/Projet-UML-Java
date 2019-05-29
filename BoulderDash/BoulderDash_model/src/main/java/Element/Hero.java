@@ -29,6 +29,21 @@ public class Hero extends mobileElement{
 	    this.freeze=false;
 		this.setImage(new ImageIcon("sprites/hero.png").getImage());
 	}
+	
+	/**	
+	 * Instantiates a new Hero
+	 * 
+	 */
+	public Hero(int x,int y) {
+		this.x=x;
+		this.y=y;
+		this.setMoveup(true);
+		this.setMoveright(true);
+		this.setMovedown(true);
+		this.setMoveleft(true);
+	    this.freeze=false;
+		this.setImage(new ImageIcon("sprites/hero.png").getImage());
+	}
 
 	/**
 	 *  Digs the ground
@@ -48,6 +63,19 @@ public class Hero extends mobileElement{
 					      break;
 				      }
 			}
+				    else if(Model.scene[i][j].getClass().toString().equals(new Diamond().getClass().toString())) {
+						//System.out.println(Model.scene[i][j].toString());  
+				    	if(this.getX()==Model.scene[i][j].getX() && this.getY()==Model.scene[i][j].getY()) {
+						    	int a = Model.scene[i][j].getX();
+						    	int b= Model.scene[i][j].getY();
+						    	Model.scene[i][j]= new Darkground();
+						    	Model.scene[i][j].setX(a);
+						    	Model.scene[i][j].setY(b);
+						    	
+						    	
+						      break;
+					      }
+				}
 		}		
 }
 }
@@ -162,26 +190,7 @@ public class Hero extends mobileElement{
  	}
  	
  	
- 	public void collision(Element obstacle) {
-		 if(((this.Zone()[0] == obstacle.Zone()[0] && obstacle.Zone()[1] == this.Zone()[1]) && (this.Zone()[2] == obstacle.Zone()[3]))) {
-			 this.setMoveup(false);
-		 }
-			 
-		 
-		 if((this.Zone()[0] == obstacle.Zone()[0] && obstacle.Zone()[1] == this.Zone()[1]) && (this.Zone()[3] == obstacle.Zone()[2])){
-			this.setMovedown(false);
-		}
-			
-		 if((obstacle.Zone()[2] == this.Zone()[2] && this.Zone()[3] == obstacle.Zone()[3]) && (obstacle.Zone()[1] == this.Zone()[0])){
-			this.setMoveleft(false);			
-		 }
-		 
-		 if((obstacle.Zone()[2] == this.Zone()[2] && this.Zone()[3] == obstacle.Zone()[3]) && (obstacle.Zone()[0] == this.Zone()[1])){
-			this.setMoveright(false);
-		}
-		 
 
-       }
 
 
 	

@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import Element.Hero;
-import Element.Wall;
+import Element.*;
 import contract.IView;
 import model.Model;
 
@@ -29,77 +29,86 @@ public class KeyBoard implements KeyListener{
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		hero.dig();
-
+		int a=0;
+		
 		if(arg0.getKeyCode()==KeyEvent.VK_LEFT) {
 			
-			//if(hero.isMoveleft()==true) {
-				hero.move('L');
-				hero.dig();
-				
-				if(hero.isFreeze()==true) {
-					for(int i=0;i<25;i++) {
-						for(int j=0;j<37;j++) {
-						  Model.scene[i][j].setX(Model.scene[i][j].getX()+32);
-						}
-					}
-			}
-			System.out.println(hero.getX()/32+" "+hero.getY()/32);
-				System.out.println(hero.getX() < 16*32-4*32 && hero.getX() > 3*32);	
-			        System.out.println((hero.getX() >= 16*32-4*32 || hero.getX() <= 3*32) && Model.scene[0][0].getX() == 0 && hero.getX() < 8*32);
-			        System.out.println((hero.getX() < 16*32-4*32 && hero.getX() > 3*32) && Model.scene[0][36].getX() == 15*32 && hero.getX() > 8*32);
-					}
-		
-		else if(arg0.getKeyCode()==KeyEvent.VK_RIGHT) {
-			System.out.println(hero.isMoveright());
-			//if(hero.isMoveleft()==true) {
-			hero.move('R');
-			hero.dig();
-			
-			if(hero.isFreeze()==true) {
 			for(int i=0;i<25;i++) {
 				for(int j=0;j<37;j++) {
-				  Model.scene[i][j].setX(Model.scene[i][j].getX()-32);
+					if(
+							Model.scene[i][j].getX()==hero.getX()-32 && Model.scene[i][j].getY()==hero.getY() && 
+							(Model.scene[i][j].getClass().toString().equals(new Wall().getClass().toString()) || Model.scene[i][j].getClass().toString().equals(new Rock().getClass().toString()))
+							) {
+					a++;
+					}
 				}
 			}
-		}
-		//	System.out.println(hero.getX()/32+" "+hero.getY()/32);
-			//System.out.println(hero.getX() < 16*32-4*32 && hero.getX() > 3*32);	
-//System.out.println(hero.getX() < 16*32-4*32 && hero.getX() > 3*32 || ((hero.getX() >= 16*32-4*32 || hero.getX() <= 3*32) && Model.scene[0][36].getX() == 15*32));
-				
 			
+			if(a==0) {
+				hero.move('L');
+				hero.dig();
+				Model.move(hero, "left");
+			}
+			}
+		
+		else if(arg0.getKeyCode()==KeyEvent.VK_RIGHT) {
 
+			for(int i=0;i<25;i++) {
+				for(int j=0;j<37;j++) {
+					if(
+							Model.scene[i][j].getX()==hero.getX()+32 && Model.scene[i][j].getY()==hero.getY() && 
+							(Model.scene[i][j].getClass().toString().equals(new Wall().getClass().toString()) || Model.scene[i][j].getClass().toString().equals(new Rock().getClass().toString()))
+							) {
+					a++;
+					}
+				}
+			}
+			if(a==0) {
+			hero.move('R');
+			hero.dig();
+			Model.move(hero, "right");
+			}
 	}
 		
 		else if(arg0.getKeyCode()==KeyEvent.VK_UP) {
 			
-		//	if(hero.isMoveleft()==true) {
-			hero.move('U');
-			hero.dig();
-
-			if(hero.isFreeze()==true) {
-				//	System.out.println("oui");	
 			for(int i=0;i<25;i++) {
 				for(int j=0;j<37;j++) {
-				  Model.scene[i][j].setY(Model.scene[i][j].getY()+32);
+					if(
+							Model.scene[i][j].getX()==hero.getX() && Model.scene[i][j].getY()==hero.getY()-32 && (
+									Model.scene[i][j].getClass().toString().equals(new Wall().getClass().toString()) || Model.scene[i][j].getClass().toString().equals(new Rock().getClass().toString()))
+									) {
+					a++;
+					}
 				}
 			}
-		}
+			
+			if(a==0) {
+			hero.move('U');
+			hero.dig();
+			Model.move(hero, "up");
+			}
+		
 	}
 
 		else if(arg0.getKeyCode()==KeyEvent.VK_DOWN) {
 			
-			//if(hero.isMoveleft()==true) {
-			hero.move('D');
-			hero.dig();
-			
-			if(hero.isFreeze()==true) {
 			for(int i=0;i<25;i++) {
 				for(int j=0;j<37;j++) {
-					
-					Model.scene[i][j].setY(Model.scene[i][j].getY()-32);
+					if(
+							Model.scene[i][j].getX()==hero.getX() && Model.scene[i][j].getY()==hero.getY()+32 && 
+							(Model.scene[i][j].getClass().toString().equals(new Wall().getClass().toString()) || Model.scene[i][j].getClass().toString().equals(new Rock().getClass().toString()))
+							) {
+					a++;
+					}
 				}
 			}
-		}
+			
+			if(a==0) {
+			hero.move('D');
+			hero.dig();
+			Model.move(hero, "down");
+			}
    }
 		       
 			 //  	System.out.println(Model.scene[0][0].getX()+" "+Model.scene[0][0].getY());

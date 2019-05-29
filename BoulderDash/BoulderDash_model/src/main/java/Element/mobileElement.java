@@ -1,5 +1,7 @@
 package Element;
 
+import model.Model;
+
 /**
  * The Class mobileElement.
  *
@@ -27,29 +29,31 @@ public abstract class mobileElement extends Element{
 	 */
 	public void move(char direction) {
 	    	
-	    	if(direction=='U') {
-	    		   this.setMoveup(true);
-		    	   this.setMovedown(false);
-	    		this.setY(this.getY()-32);	
+		 if(direction=='U') {
+					this.setMoveup(true);
+			    	   this.setMovedown(false);
+		    		this.setY(this.getY()-32);
 	    	}
 	    	
 	    	else if(direction=='D') {
-	    		this.setMoveup(false);
-		    	   this.setMovedown(true);
-	    		this.setY(this.getY()+32);
+						this.setMoveup(false);
+				    	   this.setMovedown(true);
+			    		this.setY(this.getY()+32);
 	    	}
 	    	
 	    	else if(direction=='L') {
-	       		this.setMoveleft(true);
-		    	   this.setMoveright(false);
-	    		this.setX(this.getX()-32);
+	 
+						this.setMoveleft(true);
+			    	   this.setMoveright(false);
+		    		this.setX(this.getX()-32);
 	    	}
 	    	
 	    	else if(direction=='R') {
-	     		this.setMoveright(true);
-		    	   this.setMoveleft(false);
-	    		this.setX(this.getX()+32);
-	    	}
+					this.setMoveright(true);
+			    	   this.setMoveleft(false);
+		    		this.setX(this.getX()+32);
+		 	}
+
 	    }
 	
  	/**
@@ -126,4 +130,25 @@ public abstract class mobileElement extends Element{
 	public void setMoveright(boolean moveright) {
 		this.moveright = moveright;
 	}
+	
+ 	public void collision(Element obstacle) {
+		 if(((this.Zone()[0] == obstacle.Zone()[0] && obstacle.Zone()[1] == this.Zone()[1]) && (this.Zone()[2] == obstacle.Zone()[3]))) {
+			 this.setMoveup(false);
+		 }
+			 
+		 
+		 if((this.Zone()[0] == obstacle.Zone()[0] && obstacle.Zone()[1] == this.Zone()[1]) && (this.Zone()[3] == obstacle.Zone()[2])){
+			this.setMovedown(false);
+		}
+			
+		 if((obstacle.Zone()[2] == this.Zone()[2] && this.Zone()[3] == obstacle.Zone()[3]) && (obstacle.Zone()[1] == this.Zone()[0])){
+			this.setMoveleft(false);			
+		 }
+		 
+		 if((obstacle.Zone()[2] == this.Zone()[2] && this.Zone()[3] == obstacle.Zone()[3]) && (obstacle.Zone()[0] == this.Zone()[1])){
+			this.setMoveright(false);
+		}
+		 
+
+      }
 }

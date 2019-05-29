@@ -13,11 +13,5 @@ public abstract class IView {
 	/** The constant WIDTH. */
 	public final static int WIDTH=526;
 	
-	/** The x REDUCER. */
-	public static int REDUCER_X=0;
-	
-	/** The y REDUCER. */
-	public static int REDUCER_Y=0;
-	
 	
 }

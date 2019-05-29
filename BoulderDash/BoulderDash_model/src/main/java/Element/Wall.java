@@ -9,7 +9,16 @@ import javax.swing.ImageIcon;
  */
 public class Wall extends motionlessElement{
 
+	/**
+	 * Instantiates a new Wall
+	 */
 	public Wall() {
 		this.setImage(new ImageIcon("sprites/wall.png").getImage());
 	}
+	
+	public Wall(int x,int y) {
+		this.x=x;
+		this.y=y;
+	}
 }
+

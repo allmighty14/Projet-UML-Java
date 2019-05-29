@@ -1,5 +1,9 @@
 package controller;
 
+import java.util.Timer;
+import java.util.TimerTask;
+import model.*;
+import Element.*;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
@@ -18,8 +22,9 @@ public class Controller implements IController {
 
 	    /** The model. */
 	    private final IModel model;
-
 	    
+	    private int pos_diamond;
+
 	    /**
 	     * Instantiates a new controller facade.
 	     *
@@ -39,9 +44,30 @@ public class Controller implements IController {
 	     *
 	     */
 	    public void start() {
-          
-	    }
+           Timer timer = new Timer();
+           
+       	timer.schedule(new TimerTask() {
+    		public void run() {
+    			System.out.println(Model.allDiamonds.size());
+    			for(int i=0;i<Model.allDiamonds.size();i++) {
+    				if(Model.allDiamonds.get(i) != null) {
+    			setPos_diamond(Model.allDiamonds.get(i).getState().ordinal()+1);
+    		//	System.out.println(pos_lorann);
+    			Model.allDiamonds.get(i).setState(diamondState.values()[pos_diamond]);
+    				}
+    			}
+    		}
+    	},0,150);
+	   }
 	    
+ 
+public void setPos_diamond(int pos_diamond) {
+    if(pos_diamond > 3) {
+    	this.pos_diamond=0;
+    }
+    else 
+    	this.pos_diamond=pos_diamond;
+    }
 
 	    /**
 	     * Gets the view.

@@ -8,8 +8,16 @@ import javax.swing.ImageIcon;
  * @author Group7
  */
 public class Monster extends mobileElement{
-
+	
+	/**
+	 * Instantiates a new Monster
+	 */
 	public Monster() {
 		this.setImage(new ImageIcon("sprites/monster.png").getImage());
+	}
+	
+	public Monster(int x,int y) {
+		this.x=x;
+		this.y=y;
 	}
 }
