@@ -18,6 +18,7 @@ import Element.Diamond;
 import Element.Element;
 import Element.Ground;
 import Element.Hero;
+import Element.MobileElement;
 import Element.Monster;
 import Element.Rock;
 import Element.Wall;
@@ -31,8 +32,6 @@ import model.Model;
  */
 public class ViewPanel extends JPanel {
 	Hero h = new Hero();
-	//Hero hero = new Hero();
-	//Keyboard keyboard = new Keyboard();
 	/**
 	 * Instantiates a new view panel.
 	 *
@@ -46,7 +45,8 @@ public class ViewPanel extends JPanel {
 
 	}
 	
-	/*
+	/**
+	 * 
 	 * Reading of the second level
 	 */
 	 public void readFile() {
@@ -117,7 +117,7 @@ public class ViewPanel extends JPanel {
 	protected void paintComponent(final Graphics g) {			
 			
 
-		/*
+		/**
 		 * Draw of the image in the table scene
 		 */
 		for(int i = 0; i<24; i++) {
@@ -127,21 +127,18 @@ public class ViewPanel extends JPanel {
 					}		
 				}
 		}
-		/*Hero.lab.setBounds(hero.getX(), hero.getY(), 256, 256);
-		Hero.lab.setIcon(new ImageIcon("D:\\Prosits\\Prosits\\2nd Semestre\\UE 2.2 Java\\Projet Java 2\\pers.png"));*/
 		g.drawImage(h.getImg(),h.getX(), h.getY(),this);
 		repaint();
 
 		
-		//g.drawImage(img, 0, 0, this);
-		//g.drawImage(new ImageIcon("sprites/ground.png").getImage(),this.getHeight(),this.getWidth(), this);
-		//g.setColor(Color.RED);
-		//g.fillRect(0, 0, this.getWidth(), this.getHeight());
-		
-		
 	}
 	
+	/**
+	 *  Methods which control the hero 
+	 */
+	
 	public void moveUp() {
+		h.setImg(h.getImg3());
 		int a = h.getY();
 		a-=31;
 		h.setY(a);
@@ -165,6 +162,7 @@ public class ViewPanel extends JPanel {
 	}
 	
 	public void moveDown() {
+		h.setImg(h.getImg4());
 		int a = h.getY();
 		a+=31;
 		h.setY(a);
@@ -188,6 +186,7 @@ public class ViewPanel extends JPanel {
 	}
 
 	public void moveLeft() {
+		h.setImg(h.getImg1());
 		int a = h.getX();
 		a-=31;
 		h.setX(a);
@@ -213,14 +212,15 @@ public class ViewPanel extends JPanel {
 	}
 
 	public void moveRight() {
+		h.setImg(h.getImg2());
 		int a = h.getX();
 		a+=31;
 		h.setX(a);
-		
+		System.out.print(h.getX()+" :: ");
 		for(int i=0;i<24;i++) {
 			for(int j=0; j<35; j++) {
 				    if(Model.scene[i][j].getClass().toString().equals(new Ground().getClass().toString())) {
-					System.out.println(Model.scene[i][j].toString());
+				//	System.out.println(Model.scene[i][j].toString());
 					    if(h.getX()==Model.scene[i][j].getX() && h.getY()==Model.scene[i][j].getY()) {
 					    	int c = Model.scene[i][j].getX();
 					    	int b= Model.scene[i][j].getY();
@@ -230,15 +230,11 @@ public class ViewPanel extends JPanel {
 					    	
 					      break;
 				      }
-					    if(Model.scene[i][j].getClass().toString().equals(new Wall().getClass().toString())) {
-							System.out.println(Model.scene[i][j].toString());
-							    if(h.getX()>=(Model.scene[i][j].getX()-31)) {
-							    	h.setX((Model.scene[i][j].getX()-31));
-							    }
-					    }
+					    
 				    }
 			}
 		}
+			
 	}
 
 

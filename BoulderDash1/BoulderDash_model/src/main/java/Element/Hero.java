@@ -16,14 +16,14 @@ import model.Model;
  * @author Roch MBANYA
  */
 
-public class Hero  {
+public class Hero {
 //public static ImageIcon hero = new ImageIcon("sprites/HERO.png");
 
 /*
  * Implementation of the different setter and getter corresponding to my hero
  */
-int x=186;
-static int y=124;
+ private static int x=186;
+ private static int y=124;
 
 	private Image img;
 
@@ -35,12 +35,53 @@ static int y=124;
 		this.img = img;
 	}
 
-	public static int getY() {
+	private Image img1;
+
+	public Image getImg1() {
+		return img1;
+	}
+
+	public void setImg1(Image img) {
+		this.img1 = img;
+	}
+	
+	private Image img2;
+
+	public Image getImg2() {
+		return img2;
+	}
+
+	public void setImg2(Image img) {
+		this.img2 = img;
+	}
+
+	private Image img3;
+
+	public Image getImg3() {
+		return img3;
+	}
+
+	public void setImg3(Image img) {
+		this.img3 = img;
+	}
+
+	private Image img4;
+
+	public Image getImg4() {
+		return img4;
+	}
+
+	public void setImg4(Image img) {
+		this.img4 = img;
+	}
+
+	
+	public  int getY() {
 	return y;
 	}
 	
-	public void setY(int y) {
-	this.y = y;
+	public static void setY(int a) {
+	   y = a;
 	}
 
 	/*public static ImageIcon getHero() {
@@ -51,18 +92,25 @@ static int y=124;
 	Hero.hero = hero;
 	}
 
-	*/public int getX() {
+	*/public static int getX() {
 	return x;
 	}
 	
-	public void setX(int x) {
-	this.x = x;
+	public static void setX(int a) {
+	x = a;
 	}
 	
 	public Hero() {
 //		this.setImage ( new ImageIcon("D:\\Prosits\\Prosits\\2nd Semestre\\UE 2.2 Java\\Projet Java 2\\pers.png").getImage());
 		try {
 			this.img =  ImageIO.read(new File("D:\\\\Prosits\\\\Prosits\\\\2nd Semestre\\\\UE 2.2 Java\\\\Projet Java 2\\\\pers.png"));
+			this.img1 = ImageIO.read(new File("D:\\\\Prosits\\\\Prosits\\\\2nd Semestre\\\\UE 2.2 Java\\\\Projet Java 2\\\\Images\\\\persg.png"));
+			this.img2 = ImageIO.read(new File("D:\\\\Prosits\\\\Prosits\\\\2nd Semestre\\\\UE 2.2 Java\\\\Projet Java 2\\\\Images\\\\persd.png"));
+			this.img3 = ImageIO.read(new File("D:\\\\Prosits\\\\Prosits\\\\2nd Semestre\\\\UE 2.2 Java\\\\Projet Java 2\\\\Images\\\\persh.png"));
+			this.img4 = ImageIO.read(new File("D:\\\\Prosits\\\\Prosits\\\\2nd Semestre\\\\UE 2.2 Java\\\\Projet Java 2\\\\Images\\\\persb.png"));
+			
+		
+		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,7 +118,7 @@ static int y=124;
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void dig (){
+	/*public void dig (){
 		for(int i=0;i<24;i++) {
 			for(int j=0; j<35; j++) {
 				    if(Model.scene[i][j].getClass().toString().equals(new Ground().getClass().toString())) {
@@ -87,5 +135,5 @@ static int y=124;
 			}
 		}		
 }
-}
+}*/
 }

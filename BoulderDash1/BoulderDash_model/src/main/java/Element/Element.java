@@ -28,7 +28,7 @@ public abstract class Element {
      * @return the integer x
      */
 	public int getX() {
-		return x;
+		return this.x;
 	}
 
 	/**
@@ -46,7 +46,7 @@ public abstract class Element {
      * @return the integer y
      */
 	public int getY() {
-		return y;
+		return this.y;
 	}
 
 	/**
