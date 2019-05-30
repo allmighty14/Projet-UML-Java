@@ -151,4 +151,12 @@ public abstract class mobileElement extends Element{
 		 
 
       }
+ 	
+ 	public int getIndex_i(){
+ 		return (this.getY()+Model.getLag_T())/32; 
+ 	}
+ 	
+	public int getIndex_j(){
+ 		return (this.getX()+Model.getLag_L())/32; 
+ 	}
 }

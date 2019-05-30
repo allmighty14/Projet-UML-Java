@@ -190,6 +190,70 @@ public class Hero extends mobileElement{
  	}
  	
  	
+ 	public void push(String direction) {
+ 
+ 			if(direction == "left") {
+ 				int a=0;
+ 				int i=this.getIndex_i();
+ 				int j=this.getIndex_j()-2;
+ 			    
+ 				int x1=this.getX()-32;
+ 				int x2=this.getX()-64;
+ 				
+ 				if(Model.scene[i][j].getClass().toString().equals(new Darkground().getClass().toString())) {
+ 			    
+ 				for(a=0;a<Model.allRocks.size();a++) {
+ 					if(Model.allRocks.get(a).getIndex_i()==i && Model.allRocks.get(a).getIndex_j()==j+1) {
+ 						break;
+ 					};
+ 				}
+ 				
+ 				Model.scene[i][j] = new Rock();
+ 				Model.scene[i][j+1] = new Darkground();
+ 				
+ Model.scene[i][j+1].setX(x1);  Model.scene[i][j+1].setY(this.getY());				
+ Model.scene[i][j].setX(x2);  Model.scene[i][j].setY(this.getY());
+ this.setX(x1);  this.setY(this.getY());
+ 				
+ 				Model.allRocks.set(a, (Rock) Model.scene[i][j]);
+ 				
+ 			}
+ 		 }
+ 			
+ 			else if(direction == "right") {
+ 			
+ 				int a=0;
+ 				int i=this.getIndex_i();
+ 				int j=this.getIndex_j()+2;
+ 			    
+ 				int x1=this.getX()+32;
+ 				int x2=this.getX()+64;
+ 				
+ 				if(Model.scene[i][j].getClass().toString().equals(new Darkground().getClass().toString())) {
+ 			    
+ 				for(a=0;a<Model.allRocks.size();a++) {
+ 					if(Model.allRocks.get(a).getIndex_i()==i && Model.allRocks.get(a).getIndex_j()==j-1) {
+ 						break;
+ 					};
+ 				}
+ 				
+ 				Model.scene[i][j] = new Rock();
+ 				Model.scene[i][j-1] = new Darkground();
+ 				
+ Model.scene[i][j-1].setX(x1);  Model.scene[i][j-1].setY(this.getY());				
+ Model.scene[i][j].setX(x2);  Model.scene[i][j].setY(this.getY());
+ this.setX(x1);  this.setY(this.getY());
+ 
+ 				Model.allRocks.set(a, (Rock) Model.scene[i][j]);
+ 				
+ 			}
+ 				
+ 		}
+ 
+ 		
+ 	}
+ 	
+ 	
 
 
 

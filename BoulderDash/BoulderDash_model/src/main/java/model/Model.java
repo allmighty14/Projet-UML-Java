@@ -18,9 +18,21 @@ public final class Model extends IModel {
 
 	/** The scene. */
 	public static Element [][] scene;
-	  public static ArrayList<Rock> allRocks;
-	    public static ArrayList<Monster> allMonsters;
-	    public static ArrayList<Diamond> allDiamonds;
+	
+	/** The list of all rocks on the scene  */
+	public static ArrayList<Rock> allRocks;
+    
+	/** The list of all monsters on the scene  */
+    public static ArrayList<Monster> allMonsters;
+    
+    /** The list of all Diamonds on the scene  */
+    public static ArrayList<Diamond> allDiamonds;
+    
+    /** The lag from left */
+    private static int lag_L=0;
+    
+    /** The lag from the top */
+    private static int lag_T=0;
 	    
 	
     /**
@@ -39,6 +51,7 @@ public final class Model extends IModel {
 				  Model.scene[i][j].setX(Model.scene[i][j].getX()+32);
 				}
 			}
+			lag_L-=32;
      	  }
 		}
 		
@@ -49,6 +62,7 @@ public final class Model extends IModel {
 					  Model.scene[i][j].setX(Model.scene[i][j].getX()-32);
 					}
 				}
+		      lag_L+=32;
 			}
 		}
 	
@@ -60,6 +74,7 @@ public final class Model extends IModel {
 				  Model.scene[i][j].setY(Model.scene[i][j].getY()+32);
 				}
 			}
+			lag_T-=32;
 		} 
 	   }
 		
@@ -71,10 +86,33 @@ public final class Model extends IModel {
 						Model.scene[i][j].setY(Model.scene[i][j].getY()-32);
 					}
 				}
+				lag_T+=32;
 			}
 	   }
 
 }
+
+
+	public static int getLag_L() {
+		return lag_L;
+	}
+
+
+	public static void setLag_L(int lag_L) {
+		Model.lag_L = lag_L;
+	}
+
+
+	public static int getLag_T() {
+		return lag_T;
+	}
+
+
+	public static void setLag_T(int lag_T) {
+		Model.lag_T = lag_T;
+	}
+	
+	
 
 	
 }

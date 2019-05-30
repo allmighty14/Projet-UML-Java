@@ -35,35 +35,49 @@ public class KeyBoard implements KeyListener{
 			
 			for(int i=0;i<25;i++) {
 				for(int j=0;j<37;j++) {
-					if(
-							Model.scene[i][j].getX()==hero.getX()-32 && Model.scene[i][j].getY()==hero.getY() && 
-							(Model.scene[i][j].getClass().toString().equals(new Wall().getClass().toString()) || Model.scene[i][j].getClass().toString().equals(new Rock().getClass().toString()))
+					if(Model.scene[i][j].getX()==hero.getX()-32 && Model.scene[i][j].getY()==hero.getY() && 
+							(Model.scene[i][j].getClass().toString().equals(new Wall().getClass().toString()))
 							) {
 					a++;
 					}
-				}
+					else if(Model.scene[i][j].getX()==hero.getX()-32 && Model.scene[i][j].getY()==hero.getY() &&
+							Model.scene[i][j].getClass().toString().equals(new Rock().getClass().toString())
+						) {
+					a+=2;	
+					}
 			}
-			
-			if(a==0) {
+		}
+		    if(a==2) {
+				hero.push("left");
+			}
+			else if(a==0) {
 				hero.move('L');
 				hero.dig();
 				Model.move(hero, "left");
 			}
-			}
+		
+		}
 		
 		else if(arg0.getKeyCode()==KeyEvent.VK_RIGHT) {
 
 			for(int i=0;i<25;i++) {
 				for(int j=0;j<37;j++) {
-					if(
-							Model.scene[i][j].getX()==hero.getX()+32 && Model.scene[i][j].getY()==hero.getY() && 
-							(Model.scene[i][j].getClass().toString().equals(new Wall().getClass().toString()) || Model.scene[i][j].getClass().toString().equals(new Rock().getClass().toString()))
+					if(Model.scene[i][j].getX()==hero.getX()+32 && Model.scene[i][j].getY()==hero.getY() && 
+							(Model.scene[i][j].getClass().toString().equals(new Wall().getClass().toString()))
 							) {
 					a++;
 					}
-				}
+					else if(Model.scene[i][j].getX()==hero.getX()+32 && Model.scene[i][j].getY()==hero.getY() &&
+							Model.scene[i][j].getClass().toString().equals(new Rock().getClass().toString())
+						) {
+					a+=2;	
+					}
 			}
-			if(a==0) {
+		}
+			if(a==2) {
+				hero.push("right");
+			}
+			else if(a==0) {
 			hero.move('R');
 			hero.dig();
 			Model.move(hero, "right");

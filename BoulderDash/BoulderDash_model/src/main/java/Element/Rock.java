@@ -22,6 +22,16 @@ public class Rock extends mobileElement{
 	/** The blocking down boolean*/
 	public boolean blocking_D=true;
 	
+	/** The blocking left down boolean*/
+	public boolean blocking_LD=true;
+	
+	/** The blocking right down boolean*/
+	public boolean blocking_RD=true;
+	
+	
+	/** The carried boolean*/
+	public boolean carried=false;
+	
 	
 	/**
 	 * Instantiates a new Rock
@@ -38,66 +48,107 @@ public class Rock extends mobileElement{
 	/**
 	 * fix the booleans' values
 	 */
-	public void fixBooleans(int pos){
-		int l=0, r=0, d=0;
+	public void fixBooleans(int pos,Hero hero){
 		
-		for(int i=0;i<25;i++) {
-			for(int j=0;j<37;j++) {
-				if(
-						Model.scene[i][j].getClass().toString().equals(new Wall().getClass().toString()) ||
-						Model.scene[i][j].getClass().toString().equals(new Diamond().getClass().toString()) ||
-						Model.scene[i][j].getClass().toString().equals(new Ground().getClass().toString())				
-				  ) {
-					
-					if(l==0) {
-				if(Model.scene[i][j].getX()==this.getX()-32 && Model.scene[i][j].getY()==this.getY()) {
-				   this.blocking_L=true;
-				   l++;
-				}	 else {
-					   this.blocking_L=false;
-				   }
-				}
-				 
-					if(r==0) {
-				 if(Model.scene[i][j].getX()==this.getX()+32 && Model.scene[i][j].getY()==this.getY()) {
-					   this.blocking_R=true;
-					   r++;
-				 } else {
-					 this.blocking_R=false;
-					}
-				}
-				 
-					if(d==0) {
-				 if(Model.scene[i][j].getX()==this.getX() && Model.scene[i][j].getY()==this.getY()+32) {
-					   this.blocking_D=true;
-					   d++;
-					}else {
-					 this.blocking_D=false;
-				    }
-			     }
-					
-			  }
-		 }	
+	//	System.out.println(this.getY()/32);
+		
+		/* Blocking_D && carried*/
+		if(
+				Model.scene[this.getIndex_i()+1][this.getIndex_j()].getClass().toString().equals(new Wall().getClass().toString()) ||
+				Model.scene[this.getIndex_i()+1][this.getIndex_j()].getClass().toString().equals(new Diamond().getClass().toString()) ||
+				Model.scene[this.getIndex_i()+1][this.getIndex_j()].getClass().toString().equals(new Ground().getClass().toString())				
+		  ) {
+			this.blocking_D=true;
+			this.carried=false;
+		}else {
+			if(Model.scene[this.getIndex_i()+1][this.getIndex_j()].getClass().toString().equals(new Darkground().getClass().toString())) {
+			this.blocking_D=false; this.carried=false;
+			}else {
+				this.blocking_D=false;	this.carried=true;
+			}
 		}
-		//if(blocking_D==false)
-			//  fall(this,pos);
+		
+		/* carried */
+		if(this.getX()==hero.getX() && this.getY()+32==hero.getY()) {
+			this.carried=true;
+		}
+		
+		/* Blocking_L */
+		if(
+				Model.scene[this.getIndex_i()][this.getIndex_j()-1].getClass().toString().equals(new Wall().getClass().toString()) ||
+				Model.scene[this.getIndex_i()][this.getIndex_j()-1].getClass().toString().equals(new Diamond().getClass().toString()) ||
+				Model.scene[this.getIndex_i()][this.getIndex_j()-1].getClass().toString().equals(new Ground().getClass().toString())				
+		  ) {
+			this.blocking_L=true;
+		}else {
+			this.blocking_L=false;
+		}
+		
+		
+		/* Blocking_R */
+		if(
+				Model.scene[this.getIndex_i()][this.getIndex_j()+1].getClass().toString().equals(new Wall().getClass().toString()) ||
+				Model.scene[this.getIndex_i()][this.getIndex_j()+1].getClass().toString().equals(new Diamond().getClass().toString()) ||
+				Model.scene[this.getIndex_i()][this.getIndex_j()+1].getClass().toString().equals(new Ground().getClass().toString())				
+		  ) {
+			this.blocking_R=true;
+		}else {
+			this.blocking_R=false;
+		}
+		
+		/* Blocking_LD */
+		if(
+				Model.scene[this.getIndex_i()+1][this.getIndex_j()-1].getClass().toString().equals(new Wall().getClass().toString()) ||
+				Model.scene[this.getIndex_i()+1][this.getIndex_j()-1].getClass().toString().equals(new Diamond().getClass().toString()) ||
+				Model.scene[this.getIndex_i()+1][this.getIndex_j()-1].getClass().toString().equals(new Ground().getClass().toString())				
+		  ) {
+			this.blocking_LD=true;
+		}else {
+			this.blocking_LD=false;
+		}
+		
+		/* Blocking_RD */
+		if(
+				Model.scene[this.getIndex_i()+1][this.getIndex_j()+1].getClass().toString().equals(new Wall().getClass().toString()) ||
+				Model.scene[this.getIndex_i()+1][this.getIndex_j()+1].getClass().toString().equals(new Diamond().getClass().toString()) ||
+				Model.scene[this.getIndex_i()+1][this.getIndex_j()+1].getClass().toString().equals(new Ground().getClass().toString())				
+		  ) {
+			this.blocking_RD=true;
+		}else {
+			this.blocking_RD=false;
+		}
+		
+		
+
+		 if(blocking_D==false && carried==false)
+		 fall(this,pos);	
+		// System.out.println(Model.allRocks.get(pos).getIndex_j()+" "+Model.allRocks.get(pos).getIndex_i());
+	 
 	}
 	
-	public static void fall(Rock rock,int i) {
+	
+	public static void fall(Rock rock,int pos) {
+		
 		//System.out.println(Model.allRocks.get(0).getX()/32+" "+Model.allRocks.get(0).getY()/32);
 		  // System.out.println("oui");
-		int a = rock.getY()/32;
-		int b = rock.getX()/32;
+		
+		int y = rock.getY();
+		int x = rock.getX();
+		
+		int i = rock.getIndex_i();
+		int j = rock.getIndex_j();
 	
-		Model.scene[a][b]= new Darkground();
-		Model.scene[a+1][b] = new Rock();
-		Model.allRocks.set(i, (Rock) Model.scene[a+1][b]);
+		//System.out.println(x+" "+y+" "+i+" "+j);
+		Model.scene[i][j]= new Darkground();
+		Model.scene[i+1][j] = new Rock();
 		
-		Model.scene[a][b].setX(32*b); Model.scene[a][b].setY(32*a);
-	    Model.scene[a+1][b].setX(32*b);  Model.scene[a+1][b].setY(32*(a+1));
-		
-		//System.out.println(Model.scene[a][b].getX()/32+" "+Model.scene[a][b].getY()/32);
-		//System.out.println(Model.allRocks.get(0).getX()/32+" "+Model.allRocks.get(0).getY()/32);
+		Model.scene[i][j].setX(x); Model.scene[i][j].setY(y);
+	    Model.scene[i+1][j].setX(x);  Model.scene[i+1][j].setY(y+32);
+	    Model.allRocks.set(pos, (Rock) Model.scene[i+1][j]);
+	    
+	    
+		//System.out.println(i+" "+j+": "+Model.scene[i][j].getX()/32+" "+Model.scene[i][j].getY()/32);
+		//System.out.println((i+1)+" "+j+": "+Model.allRocks.get(pos).getX()/32+" "+Model.allRocks.get(pos).getY()/32);
 	}
 
 }

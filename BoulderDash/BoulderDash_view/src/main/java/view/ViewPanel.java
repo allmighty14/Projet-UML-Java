@@ -87,17 +87,16 @@ public class ViewPanel extends JPanel {
 			    	}
 			    	
 			    	
-			    	System.out.print(ligne.charAt(j));
+			    	//System.out.print(ligne.charAt(j));
 			    	//System.out.println(Model.scene[i][j]);
 			    	
 		    		Model.scene[i][j].setX(32*(j));
 		    		Model.scene[i][j].setY(32*(i));
 			    }
 			    
-			    System.out.println("");
+			    //System.out.println("");
 			    i++;
 			}
-			System.out.println(Model.allRocks.size());
 			buff.close();
 			
 			}		
@@ -117,54 +116,33 @@ public class ViewPanel extends JPanel {
 	@Override
 	protected void paintComponent(final Graphics g) {
 		
-		/*for(int i=0;i<25;i++) {
-			for(int j=0;j<37;j++) {
-				g.drawImage(new ImageIcon("sprites/darkground.png").getImage(),32*j,32*i,this);+
-			}
-		}*/
-	
-		for(int a=0;a<Model.allRocks.size();a++) {
-            Model.allRocks.get(a).fixBooleans(a);
-			}
-		System.out.println(Model.allRocks.get(9).getX()/32+" "+Model.allRocks.get(9).getY()/32);
-		System.out.println(Model.allRocks.get(9).blocking_L+" "+Model.allRocks.get(9).blocking_R+" "+Model.allRocks.get(9).blocking_D);
 		
-		//System.out.println(Model.allRocks.get(0).blocking_L+" "+Model.allRocks.get(0).blocking_R+" "+Model.allRocks.get(0).blocking_D);
-		
+		  for(int a=0;a<Model.allRocks.size();a++) {
+            Model.allRocks.get(a).fixBooleans(a,KeyBoard.hero);
+		   }
+		   
+		//System.out.println(Model.allRocks.get(12).getX()/32+" "+Model.allRocks.get(12).getY()/32);
+		//System.out.println(Model.allRocks.get(12).getIndex_j()+" "+Model.allRocks.get(12).getIndex_i());
+		//System.out.println(KeyBoard.hero.getX()+" "+KeyBoard.hero.getY());
+		//System.out.println(Model.allRocks.get(4).getX()+" "+Model.allRocks.get(4).getY());
+//System.out.println(Model.allRocks.get(4).blocking_L+" "+Model.allRocks.get(4).blocking_R+" "+Model.allRocks.get(4).blocking_D+" "+Model.allRocks.get(4).carried);
+		//System.out.println(Model.getLag_L()+" "+Model.getLag_T());
+			
 		for(int i=0;i<25;i++) {
 			for(int j=0;j<37;j++) {
-				if(Model.scene[i][j] != null) {
 				g.drawImage(Model.scene[i][j].getImage(),Model.scene[i][j].getX(),Model.scene[i][j].getY(),this);
-				}
 			}
 		}
-
-	/*	for(int j=0; j<25; j++) {
- 		    for(int i=0; i<37; i++){
- 		    	
- 		    	if(
- 		    			(Model.scene[j][i].getClass().toString().equals(new Wall().getClass().toString())) ||
- 		    			(Model.scene[j][i].getClass().toString().equals(new Rock().getClass().toString())) ||
- 		    			(Model.scene[j][i].getClass().toString().equals(new Diamond().getClass().toString()))
- 		    			
- 		    			) {
- 		    		KeyBoard.hero.collision(Model.scene[j][i]);
- 		    	}
- 			 }
- 		    }*/
 		
-		
-	
 		g.drawImage(KeyBoard.hero.getImage(),KeyBoard.hero.getX(),KeyBoard.hero.getY(),this);
 		
 		
 		try {
-			Thread.sleep(0);
+			Thread.sleep(80);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		repaint();
 	}
 }

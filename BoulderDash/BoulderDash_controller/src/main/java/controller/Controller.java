@@ -48,7 +48,6 @@ public class Controller implements IController {
            
        	timer.schedule(new TimerTask() {
     		public void run() {
-    			System.out.println(Model.allDiamonds.size());
     			for(int i=0;i<Model.allDiamonds.size();i++) {
     				if(Model.allDiamonds.get(i) != null) {
     			setPos_diamond(Model.allDiamonds.get(i).getState().ordinal()+1);
