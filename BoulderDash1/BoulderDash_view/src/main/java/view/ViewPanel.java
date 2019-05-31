@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.BufferedReader;
@@ -8,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -22,6 +25,7 @@ import Element.Hero;
 import Element.MobileElement;
 import Element.Monster;
 import Element.Rock;
+import Element.Stars;
 import Element.Wall;
 //import controller.Keyboard;
 import model.Model;
@@ -33,6 +37,7 @@ import model.Model;
  */
 public class ViewPanel extends JPanel {
 	Hero h = new Hero();
+	Stars s = new Stars();
 	/**
 	 * Instantiates a new view panel.
 	 *
@@ -41,7 +46,7 @@ public class ViewPanel extends JPanel {
 	 */
 	public ViewPanel() {
 		Model.scene = new Element[24][35];
-		
+		Model.allDiamonds=new ArrayList<Diamond>();
 		readFile();
 
 	}
@@ -78,6 +83,7 @@ public class ViewPanel extends JPanel {
 		       
 		       else if(ligne.charAt(j) == '*') {
 		        Model.scene[i][j]=new Diamond();   
+		    	Model.allDiamonds.add((Diamond) Model.scene[i][j]);
 		        }
 		       else if(ligne.charAt(j) == ' ') {
 		        Model.scene[i][j]=new Darkground();   
@@ -129,6 +135,21 @@ public class ViewPanel extends JPanel {
 				}
 		}
 		g.drawImage(h.getImg(),h.getX(), h.getY(),this);
+	//	g.drawImage(s.getImg(),h.getX(),h.getY(),this);
+		if(Stars.getX(0) != 0 ) {
+			for(int i = 0; i<9; i++) {
+				g.drawImage(s.getImg(),s.getX(i),s.getY(i),this);
+				int u = h.getY();
+				g.drawImage(h.getImg5(),h.getX(), h.getY(),this);
+				u=-31;
+				h.setY(u);
+				//System.out.println("ahhhhh");
+			}
+			Font font = new Font("Courier", Font.BOLD,40);
+			g.setFont(font);
+			g.setColor(Color.green);
+			g.drawString("Game Over", 460, 390);
+		}
 		
 		
 		try {
@@ -147,8 +168,10 @@ public class ViewPanel extends JPanel {
 	 */
 	
 	public void moveUp() {
-		if (Model.isC() ==true) {
+		if (Model.isC1()== true) {
 		h.setImg(h.getImg3());
+		if (Model.isC() ==true) {
+		
 		int a = h.getY();
 		a-=31;
 		h.setY(a);
@@ -170,11 +193,14 @@ public class ViewPanel extends JPanel {
 			}
 			}
 		}
+		}
 	}
 	
 	public void moveDown() {
-		if (Model.isD() ==true) {
+		if (Model.isD1()== true) {
 		h.setImg(h.getImg4());
+		if (Model.isD() ==true) {
+		
 		int a = h.getY();
 		a+=31;
 		h.setY(a);
@@ -196,16 +222,18 @@ public class ViewPanel extends JPanel {
 				}
 			}
 		}
+		}
 	}
 
 	public void moveLeft() {
-		if (Model.isA()== true) {
+		if (Model.isA1()== true) {
 		h.setImg(h.getImg1());
+		if (Model.isA()== true) {
 		int a = h.getX();
 		a-=31;
 		h.setX(a);
 	//	repaint();
-		
+			
 		for(int i=0;i<24;i++) {
 			for(int j=0; j<35; j++) {
 				    if(Model.scene[i][j].getClass().toString().equals(new Ground().getClass().toString())) {
@@ -222,17 +250,19 @@ public class ViewPanel extends JPanel {
 				    }
 				}
 			}
+		}
 		}
 	//	repaint();
 	}
 
 	public void moveRight() {
-		if (Model.isB()== true) {
+		if (Model.isB1()== true) {
 		h.setImg(h.getImg2());
+		if (Model.isB()== true) {
+		
 		int a = h.getX();
 		a+=31;
 		h.setX(a);
-		//System.out.print(h.getX()+" :: ");
 		for(int i=0;i<24;i++) {
 			for(int j=0; j<35; j++) {
 				    if(Model.scene[i][j].getClass().toString().equals(new Ground().getClass().toString())) {
@@ -251,6 +281,29 @@ public class ViewPanel extends JPanel {
 				}
 			}
 		}
+		}
+	}
+	
+	
+	public void reput() {
+		for(int i=0;i<24;i++) {
+			for(int j=0; j<35; j++) {
+				    if(Model.scene[i][j].getClass().toString().equals(new Ground().getClass().toString())) {
+					System.out.println(Model.scene[i][j].toString());
+					    if(h.getX()==Model.scene[i][j].getX() && h.getY()==Model.scene[i][j].getY()) {
+					    	int c = Model.scene[i][j].getX();
+					    	int b= Model.scene[i][j].getY();
+					    	Model.scene[i][j]= new Darkground();
+					    	Model.scene[i][j].setX(c);
+					    	Model.scene[i][j].setY(b);
+					    	
+					      break;
+				      }
+				    }
+				}
+			}
+		h.setImg(h.getImg());
+		System.out.println("Voici moi");
 	}
 
 

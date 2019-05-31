@@ -19,7 +19,7 @@ import model.Model;
 public class Hero {
 //public static ImageIcon hero = new ImageIcon("sprites/HERO.png");
 
-/*
+/**
  * Implementation of the different setter and getter corresponding to my hero
  */
  private static int x=186;
@@ -74,6 +74,16 @@ public class Hero {
 	public void setImg4(Image img) {
 		this.img4 = img;
 	}
+	
+	private Image img5;
+
+	public Image getImg5() {
+		return img5;
+	}
+
+	public void setImg5(Image img) {
+		this.img5 = img;
+	}
 
 	
 	public static  int getY() {
@@ -84,15 +94,7 @@ public class Hero {
 	   y = a;
 	}
 
-	/*public static ImageIcon getHero() {
-	return hero;
-	}
-
-	public static void setHero(ImageIcon hero) {
-	Hero.hero = hero;
-	}
-
-	*/public static int getX() {
+	public static int getX() {
 	return x;
 	}
 	
@@ -108,7 +110,7 @@ public class Hero {
 			this.img2 = ImageIO.read(new File("D:\\\\Prosits\\\\Prosits\\\\2nd Semestre\\\\UE 2.2 Java\\\\Projet Java 2\\\\Images\\\\persd.png"));
 			this.img3 = ImageIO.read(new File("D:\\\\Prosits\\\\Prosits\\\\2nd Semestre\\\\UE 2.2 Java\\\\Projet Java 2\\\\Images\\\\persh.png"));
 			this.img4 = ImageIO.read(new File("D:\\\\Prosits\\\\Prosits\\\\2nd Semestre\\\\UE 2.2 Java\\\\Projet Java 2\\\\Images\\\\persb.png"));
-			
+			this.img5 = ImageIO.read(new File("D:\\\\Prosits\\\\Prosits\\\\2nd Semestre\\\\UE 2.2 Java\\\\Projet Java 2\\\\Images\\\\persdead.png"));
 		
 		
 		} catch (IOException e) {
@@ -118,22 +120,5 @@ public class Hero {
 		// TODO Auto-generated constructor stub
 	}
 	
-	/*public void dig (){
-		for(int i=0;i<24;i++) {
-			for(int j=0; j<35; j++) {
-				    if(Model.scene[i][j].getClass().toString().equals(new Ground().getClass().toString())) {
-					System.out.println(Model.scene[i][j].toString());
-					    if(this.getX()==Model.scene[i][j].getX() && this.getY()==Model.scene[i][j].getY()) {
-					    	int a = Model.scene[i][j].getX();
-					    	int b= Model.scene[i][j].getY();
-					    	Model.scene[i][j]= new Darkground();
-					    	Model.scene[i][j].setX(a);
-					    	Model.scene[i][j].setY(b);
-					    	
-					      break;
-				      }
-			}
-		}		
-}
-}*/
+	
 }

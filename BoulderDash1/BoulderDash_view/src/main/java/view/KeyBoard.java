@@ -25,9 +25,13 @@ public class KeyBoard  implements KeyListener{
 	public void keyPressed(KeyEvent k) {
 		// TODO Auto-generated method stub
 		if (k.getKeyCode()== KeyEvent.VK_UP) {
+			
+			
+			MobileElement.boardh();
 			p.moveUp();
 			MobileElement.moves();
-			MobileElement.boardh();
+		//	p.reput();
+	//		MobileElement.collision();
 		//	hero.dig();
 			
 			
@@ -35,24 +39,29 @@ public class KeyBoard  implements KeyListener{
 			
 		}
 		if (k.getKeyCode()== KeyEvent.VK_DOWN) {
+			
+			MobileElement.boardb();
 			p.moveDown();
 			MobileElement.moves();
-			MobileElement.boardb();
+		//	p.reput();
 		//	hero.dig();
 			
 		}
 		if (k.getKeyCode()== KeyEvent.VK_LEFT) {
+			MobileElement.boardg();
 			p.moveLeft();
 			MobileElement.moves();
-			MobileElement.boardg();
+		//	p.reput();
 		//	hero.dig();
 			
 			
 		}
 		if (k.getKeyCode()== KeyEvent.VK_RIGHT) {
+	
+			MobileElement.boardd();
+			//p.reput();
 			p.moveRight();
 			MobileElement.moves();
-			MobileElement.boardd();
 		//	hero.dig();
 			
 		  
@@ -61,6 +70,7 @@ public class KeyBoard  implements KeyListener{
 
 	public void keyReleased(KeyEvent k) {
 		// TODO Auto-generated method stub
+		
 		
 	}
 
