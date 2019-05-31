@@ -19,13 +19,13 @@ public class DBConnection {
 	private Connection					connection;
 	
 	/** The url. */
-	private String							url = "jdbc:mysql://localhost/jpublankproject?useSSL=false&zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC";
+	private String							url = "jdbc:mysql://localhost/java_project?useSSL=false&zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC";
 
 	/** The login. */
 	private String							login = "root";
 
 	/** The password. */
-	private String							password = "bonsoir";
+	private String							password = "";
 	
 	/** The password. */
 	private CallableStatement							statement;

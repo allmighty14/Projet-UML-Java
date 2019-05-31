@@ -120,7 +120,7 @@ public class ViewPanel extends JPanel {
 		if(KeyBoard.hero != null)
 		g.drawImage(KeyBoard.hero.getImage(),KeyBoard.hero.getX(),KeyBoard.hero.getY(),this);
 		//  System.out.println("----------------------------------------------");
-		  for(int a=6;a<7;a++) {
+		  for(int a=0;a<Model.allRocks.size();a++) {
 			    if(KeyBoard.hero != null)
 	            Model.allRocks.get(a).fixBooleans(a,KeyBoard.hero);
 			  //  System.out.println(Model.allRocks.get(a).dangerous+" "+Model.allRocks.get(a).getIndex_i()+" "+Model.allRocks.get(a).getIndex_j());
