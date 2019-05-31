@@ -1,5 +1,6 @@
 package contract;
 
+
 /**
  * The Interface IView.
  *
@@ -12,6 +13,12 @@ public abstract class IView {
 
 	/** The constant WIDTH. */
 	public final static int WIDTH=526;
+	
+	/** The viewFrame counter. */
+	public static int counter=0;
+	
+	/** The viewFrame diamondCounter. */
+	public static int diamondCounter=0;
 	
 	
 }

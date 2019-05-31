@@ -159,4 +159,6 @@ public abstract class mobileElement extends Element{
 	public int getIndex_j(){
  		return (this.getX()+Model.getLag_L())/32; 
  	}
+	
+	public abstract void fixBooleans(int pos, Hero hero);
 }

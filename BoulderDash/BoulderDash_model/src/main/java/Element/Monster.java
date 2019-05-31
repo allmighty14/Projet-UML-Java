@@ -20,4 +20,10 @@ public class Monster extends mobileElement{
 		this.x=x;
 		this.y=y;
 	}
+
+	@Override
+	public void fixBooleans(int pos, Hero hero) {
+		// TODO Auto-generated method stub
+		
+	}
 }

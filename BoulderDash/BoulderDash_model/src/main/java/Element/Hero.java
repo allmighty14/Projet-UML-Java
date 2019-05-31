@@ -14,6 +14,9 @@ public class Hero extends mobileElement{
 	/** The freeze boolean*/
 	private boolean freeze;
 	
+	/** The dead boolean*/
+	private boolean dead;
+	
 	
 	/**	
 	 * Instantiates a new Hero
@@ -27,9 +30,18 @@ public class Hero extends mobileElement{
 		this.setMovedown(true);
 		this.setMoveleft(true);
 	    this.freeze=false;
+	    this.dead=false;
 		this.setImage(new ImageIcon("sprites/hero.png").getImage());
 	}
 	
+	public boolean isDead() {
+		return dead;
+	}
+
+	public void setDead(boolean dead) {
+		this.dead = dead;
+	}
+
 	/**	
 	 * Instantiates a new Hero
 	 * 
@@ -68,9 +80,11 @@ public class Hero extends mobileElement{
 				    	if(this.getX()==Model.scene[i][j].getX() && this.getY()==Model.scene[i][j].getY()) {
 						    	int a = Model.scene[i][j].getX();
 						    	int b= Model.scene[i][j].getY();
+						    	Model.allDiamonds.remove(Model.scene[i][j]);
 						    	Model.scene[i][j]= new Darkground();
 						    	Model.scene[i][j].setX(a);
 						    	Model.scene[i][j].setY(b);
+						    	
 						    	
 						    	
 						      break;
@@ -252,6 +266,12 @@ public class Hero extends mobileElement{
  
  		
  	}
+
+	@Override
+	public void fixBooleans(int pos, Hero hero) {
+		// TODO Auto-generated method stub
+		
+	}
  	
  	
 

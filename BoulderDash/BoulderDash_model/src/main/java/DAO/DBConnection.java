@@ -1,5 +1,6 @@
 package DAO;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -12,7 +13,7 @@ import java.sql.Statement;
  * @author Group7
  */
 
-final class DBConnection {
+public class DBConnection {
 
 	/** The connection. */
 	private Connection					connection;
@@ -27,7 +28,7 @@ final class DBConnection {
 	private String							password = "bonsoir";
 	
 	/** The password. */
-	private Statement							statement;
+	private CallableStatement							statement;
 	
 	
 	
@@ -55,12 +56,22 @@ final class DBConnection {
 	    			e.printStackTrace();
 	    		}
 	            this.connection = DriverManager.getConnection(url,login,password);
-	            this.statement = this.connection.createStatement();
 	            return true;  
 	        } catch (final SQLException exception) {
 	            exception.printStackTrace();
 	            return false;
 	        }      
+	    }
+	 
+	 public boolean close() {
+	     try {
+			this.statement.close();
+			this.connection.close();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	    }
 
 	/**
@@ -72,46 +83,13 @@ final class DBConnection {
 		return this.connection;
 	}
 
-/**
- * Prepare call.
- *
- * @param query
- *            the query
- * @return the java.sql. callable statement
- */
-
-public ResultSet executeQuery(final String query) {
-    try {
-        return this.getStatement().executeQuery(query);
-    } catch (final SQLException e) {
-        e.printStackTrace();
-    }
-    return null;
-}
-
-
-/**
- * Execute update.
- *
- * @param query
- *            the query
- * @return the int
- */
-public int executeUpdate(final String query) {
-    try {
-        return this.statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
-    } catch (final SQLException e) {
-        e.printStackTrace();
-    }
-    return 0;
-}
 
 /**
  * Gets the statement.
  *
  * @return the statement
  */
-public Statement getStatement() {
+public CallableStatement getStatement() {
     return this.statement;
 }
 
@@ -121,7 +99,7 @@ public Statement getStatement() {
  * @param statement
  *            the new statement
  */
-public void setStatement(final Statement statement) {
+public void setStatement(final CallableStatement statement) {
     this.statement = statement;
 }
 }

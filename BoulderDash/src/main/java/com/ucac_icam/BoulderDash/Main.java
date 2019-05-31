@@ -4,7 +4,10 @@
  */
 package com.ucac_icam.BoulderDash;
 
-import Element.Music;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import controller.Controller;
 import model.Model;
 import view.View;
@@ -15,7 +18,7 @@ import view.View;
  * @author Group7
  */
 public abstract class Main {
-
+public static  int a=0;
     /**
      * The main method.
      *
@@ -24,9 +27,18 @@ public abstract class Main {
      */
 	 public static void main(final String[] args) {
       
-		 final Controller controller = new Controller(new View(), new Model());
+		final Controller controller = new Controller(new View(), new Model());
               
 		controller.start();
-		//System.out.println("all");
+		 
+		/*final Timer t = new Timer();
+		t.schedule(new TimerTask() {
+			public void run() {
+				System.out.println(a);
+				a++;
+				if(a>=5)
+					t.cancel();
+				}
+		}, 2000,500);*/
     }
 }
