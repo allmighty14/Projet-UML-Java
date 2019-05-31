@@ -28,6 +28,7 @@ public class KeyBoard  implements KeyListener{
 			
 			
 			MobileElement.boardh();
+			//MobileElement.boardhr();
 			p.moveUp();
 			MobileElement.moves();
 		//	p.reput();
@@ -41,6 +42,7 @@ public class KeyBoard  implements KeyListener{
 		if (k.getKeyCode()== KeyEvent.VK_DOWN) {
 			
 			MobileElement.boardb();
+		//	MobileElement.boardbr();
 			p.moveDown();
 			MobileElement.moves();
 		//	p.reput();
@@ -49,6 +51,7 @@ public class KeyBoard  implements KeyListener{
 		}
 		if (k.getKeyCode()== KeyEvent.VK_LEFT) {
 			MobileElement.boardg();
+			MobileElement.boardgr();
 			p.moveLeft();
 			MobileElement.moves();
 		//	p.reput();
@@ -59,6 +62,7 @@ public class KeyBoard  implements KeyListener{
 		if (k.getKeyCode()== KeyEvent.VK_RIGHT) {
 	
 			MobileElement.boardd();
+			MobileElement.boarddr();
 			//p.reput();
 			p.moveRight();
 			MobileElement.moves();

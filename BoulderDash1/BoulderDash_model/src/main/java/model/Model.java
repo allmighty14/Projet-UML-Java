@@ -23,6 +23,15 @@ public final class Model extends Observable implements IModel {
 	private static boolean d = true;
 	private static boolean a1 = true;
 	private static boolean b1 = true;
+	private static int sc = 0;
+	public static int getSc() {
+		return sc;
+	}
+
+	public static void setSc(int sc) {
+		Model.sc = sc;
+	}
+
 	public static boolean isA1() {
 		return a1;
 	}

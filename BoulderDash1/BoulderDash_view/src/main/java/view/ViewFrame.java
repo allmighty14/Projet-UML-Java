@@ -1,6 +1,7 @@
 package view;
 
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import contract.IView;
@@ -16,6 +17,9 @@ public class ViewFrame extends JFrame {
 
 /** The panel. */
 	private ViewPanel pan;
+	private Panneau p;
+	JButton bouton = new JButton("Play");
+	
 	
 /** The constant HEIGHT. */	
 private final static int HEIGHT=780;//531;
@@ -39,16 +43,18 @@ private final static int WIDTH=1088;//533;
 	 */
 	private void buildViewFrame() {
 	    pan = new ViewPanel();
+	    p = new Panneau();
 	    this.addKeyListener(new KeyBoard(pan));
 	  //  pan.setFocusable(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("BoulderDash");
 		this.setResizable(false);
-		//this.addKeyListener();
-		this.setContentPane(pan);
+		p.add(bouton);
+		this.setContentPane(p);
 		this.setSize(WIDTH,HEIGHT);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		//this.setContentPane(pan);
 	}
 
 

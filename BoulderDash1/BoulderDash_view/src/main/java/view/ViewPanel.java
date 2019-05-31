@@ -38,6 +38,7 @@ import model.Model;
 public class ViewPanel extends JPanel {
 	Hero h = new Hero();
 	Stars s = new Stars();
+    
 	/**
 	 * Instantiates a new view panel.
 	 *
@@ -45,6 +46,8 @@ public class ViewPanel extends JPanel {
 	 *          the view frame
 	 */
 	public ViewPanel() {
+		
+		
 		Model.scene = new Element[24][35];
 		Model.allDiamonds=new ArrayList<Diamond>();
 		readFile();
@@ -80,6 +83,10 @@ public class ViewPanel extends JPanel {
 		       else if(ligne.charAt(j) == 'M') {
 		        Model.scene[i][j]=new Monster();   
 		        }
+		       
+		       else if(ligne.charAt(j) == 'H') {
+			        Model.scene[i][j]=new Darkground();   
+			    }
 		       
 		       else if(ligne.charAt(j) == '*') {
 		        Model.scene[i][j]=new Diamond();   
@@ -122,7 +129,7 @@ public class ViewPanel extends JPanel {
 	 */
 	@Override
 	protected void paintComponent(final Graphics g) {			
-			
+		
 
 		/**
 		 * Draw of the image in the table scene
@@ -134,19 +141,19 @@ public class ViewPanel extends JPanel {
 					}		
 				}
 		}
+		Font font = new Font("Comic Sans MS", Font.BOLD,30);
+		g.setFont(font);
+		g.setColor(Color.white);
+		g.drawString("Score : "+Model.getSc(), 460, 25);
+		g.drawString("Time : "+120, 460, 55);
 		g.drawImage(h.getImg(),h.getX(), h.getY(),this);
-	//	g.drawImage(s.getImg(),h.getX(),h.getY(),this);
 		if(Stars.getX(0) != 0 ) {
 			for(int i = 0; i<9; i++) {
 				g.drawImage(s.getImg(),s.getX(i),s.getY(i),this);
 				int u = h.getY();
-				g.drawImage(h.getImg5(),h.getX(), h.getY(),this);
-				u=-31;
+				g.drawImage(h.getImg5(),h.getX(), h.getY(),this);u=-31;
 				h.setY(u);
-				//System.out.println("ahhhhh");
 			}
-			Font font = new Font("Courier", Font.BOLD,40);
-			g.setFont(font);
 			g.setColor(Color.green);
 			g.drawString("Game Over", 460, 390);
 		}
