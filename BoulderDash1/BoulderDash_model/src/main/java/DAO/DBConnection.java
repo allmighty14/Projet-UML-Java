@@ -18,13 +18,13 @@ final class DBConnection {
 	private Connection					connection;
 	
 	/** The url. */
-	private String							url = "jdbc:mysql://localhost/jpublankproject?useSSL=false&zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC";
+	private String							url = "jdbc:mysql://localhost/projetumljava?useSSL=false";
 
 	/** The login. */
 	private String							login = "root";
 
 	/** The password. */
-	private String							password = "bonsoir";
+	private String							password = "";
 	
 	/** The password. */
 	private Statement							statement;
@@ -50,7 +50,7 @@ final class DBConnection {
 	 public boolean open() {
 	        try {
 	        	try {
-	    			Class.forName("com.mysql.cj.jdbc.Driver");
+	    			Class.forName("com.mysql.jdbc.Driver");
 	    		} catch (ClassNotFoundException e) {
 	    			e.printStackTrace();
 	    		}

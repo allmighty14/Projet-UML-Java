@@ -240,7 +240,8 @@ public class MobileElement {
 				    Model.scene[(i+1)][j].getClass().toString().equals(new Rock().getClass().toString()) &&
 				    Model.scene[i][(j-1)].getClass().toString().equals(new Darkground().getClass().toString()) &&
 				    Model.scene[(i+1)][(j-1)].getClass().toString().equals(new Darkground().getClass().toString()) &&
-				   (Hero.getX()!=  Model.scene[i+1][(j-1)].getX() || Hero.getY()!=  Model.scene[i+1][(j-1)].getY())) {
+				   (Hero.getX()!=  Model.scene[i+1][(j-1)].getX() || Hero.getY()!=  Model.scene[i+1][(j-1)].getY())/* ||
+				  /* (Hero.getX()!=  Model.scene[i][(j-1)].getX() || Hero.getY()!=  Model.scene[i][(j-1)].getY())*/) {
 			    		int c = Model.scene[i][j].getX();
 			    		int b= Model.scene[i][j].getY();
 			    		Model.scene[i][j]= new Darkground();
@@ -405,6 +406,9 @@ public class MobileElement {
 									    		Model.scene[i][j].setY(b);
 									    		int a = Model.getSc();
 									    		a+=10;
+									    		int d = Model.getDia();
+									    		d-=1;
+									    		Model.setDia(d);
 									    		Model.setSc(a);
 										    }
 			}
@@ -425,7 +429,7 @@ public class MobileElement {
 	public static void boardg() {
 	
 		for(int i=0;i<24;i++) {
-			for(int j=1; j<35; j++) {
+			for(int j=0; j<35; j++) {
 				    if(Hero.getX() == (Model.scene[i][j].getX()+31) && Hero.getY()==Model.scene[i][j].getY()  && ( Model.scene[i][j].getClass().toString().equals(new Wall().getClass().toString()))) {		
 				    		Model.setA(false);
 					      break;
@@ -512,7 +516,7 @@ public static void boarddr() {
 	
 	 public static void boardd() {
 		 for(int i=0;i<24;i++) {
-				for(int j=0; j<34; j++) {
+				for(int j=0; j<35; j++) {
 				    if(Hero.getX() == (Model.scene[i][j].getX()-31) && Hero.getY()==Model.scene[i][j].getY()  && ( Model.scene[i][j].getClass().toString().equals(new Wall().getClass().toString()))) {
 					    		Model.setB(false);
 				    }

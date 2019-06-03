@@ -24,6 +24,8 @@ public final class Model extends Observable implements IModel {
 	private static boolean a1 = true;
 	private static boolean b1 = true;
 	private static int sc = 0;
+	private static int ti = 120;
+	private static int dia = 15;
 	public static int getSc() {
 		return sc;
 	}
@@ -118,5 +120,21 @@ public final class Model extends Observable implements IModel {
 	 */
 	public Observable getObservable() {
 		return this;
+	}
+
+	public static int getTi() {
+		return ti;
+	}
+
+	public static void setTi(int ti) {
+		Model.ti = ti;
+	}
+
+	public static int getDia() {
+		return dia;
+	}
+
+	public static void setDia(int dia) {
+		Model.dia = dia;
 	}
 }

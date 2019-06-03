@@ -27,5 +27,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/BoulderDash_controller"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BoulderDash_model"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BoulderDash_view"/>
+	<classpathentry kind="lib" path="C:/Users/Roch Mbanya/Downloads/mysql-connector-java-5.1.6-bin.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

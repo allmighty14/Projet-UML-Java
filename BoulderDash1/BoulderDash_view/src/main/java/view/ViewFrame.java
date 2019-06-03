@@ -1,10 +1,20 @@
 package view;
 
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
+import Element.DiamondState;
 import contract.IView;
+import model.Model;
 
 
 
@@ -13,12 +23,12 @@ import contract.IView;
  *
  * @author Jean-Aymeric Diet
  */
-public class ViewFrame extends JFrame {
+public class ViewFrame extends JFrame implements ActionListener {
 
 /** The panel. */
 	private ViewPanel pan;
 	private Panneau p;
-	JButton bouton = new JButton("Play");
+	private int i = 0;
 	
 	
 /** The constant HEIGHT. */	
@@ -45,17 +55,21 @@ private final static int WIDTH=1088;//533;
 	    pan = new ViewPanel();
 	    p = new Panneau();
 	    this.addKeyListener(new KeyBoard(pan));
-	  //  pan.setFocusable(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("BoulderDash");
 		this.setResizable(false);
-		p.add(bouton);
-		this.setContentPane(p);
 		this.setSize(WIDTH,HEIGHT);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-		//this.setContentPane(pan);
+		this.setContentPane(pan);
 	}
+
+
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		this.i+=1;
+	}
+	
 
 
 

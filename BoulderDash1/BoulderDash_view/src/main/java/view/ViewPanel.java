@@ -16,6 +16,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import DAO.DAOLevel;
 import Element.Darkground;
 import Element.Diamond;
 import Element.DiamondState;
@@ -38,6 +39,8 @@ import model.Model;
 public class ViewPanel extends JPanel {
 	Hero h = new Hero();
 	Stars s = new Stars();
+	DAOLevel d = new DAOLevel();
+	Image img;
     
 	/**
 	 * Instantiates a new view panel.
@@ -58,7 +61,7 @@ public class ViewPanel extends JPanel {
 	 * 
 	 * Reading of the second level
 	 */
-	 public void readFile() {
+	 public void readFile() {/*
 		 try{
 		  InputStream flux=new FileInputStream("D:\\Prosits\\Prosits\\2nd Semestre\\UE 2.2 Java\\Projet Java 2\\1stLevel.txt"); 
 		  InputStreamReader lecture=new InputStreamReader(flux);
@@ -67,32 +70,34 @@ public class ViewPanel extends JPanel {
 		  int i=0;
 		  
 		  while ((ligne=buff.readLine())!=null){
-		      for(int j=0;j<35;j++) {
-		       if(ligne.charAt(j) == 'G') {
+		      */
+		 for(int i=0;i<24;i++) {
+		 	for(int j=0;j<35;j++) {
+		       if(/*ligne.charAt(j)*/d.getScenetest()[i][j] == 'G') {
 		       Model.scene[i][j]=new Ground(); 
 		       }
 		       
-		       else if(ligne.charAt(j) == 'W') {
+		       else if(/*ligne.charAt(j)*/d.getScenetest()[i][j] == 'W') {
 		        Model.scene[i][j]=new Wall();   
 		        }
 		       
-		       else if(ligne.charAt(j) == 'O') {
+		       else if(/*ligne.charAt(j)*/d.getScenetest()[i][j] == 'O') {
 		        Model.scene[i][j]=new Rock();   
 		        }
 		       
-		       else if(ligne.charAt(j) == 'M') {
+		       else if(/*ligne.charAt(j)*/d.getScenetest()[i][j] == 'M') {
 		        Model.scene[i][j]=new Monster();   
 		        }
 		       
-		       else if(ligne.charAt(j) == 'H') {
+		       else if(/*ligne.charAt(j)*/d.getScenetest()[i][j] == 'H') {
 			        Model.scene[i][j]=new Darkground();   
 			    }
 		       
-		       else if(ligne.charAt(j) == '*') {
+		       else if(/*ligne.charAt(j)*/d.getScenetest()[i][j] == '*') {
 		        Model.scene[i][j]=new Diamond();   
 		    	Model.allDiamonds.add((Diamond) Model.scene[i][j]);
 		        }
-		       else if(ligne.charAt(j) == ' ') {
+		       else if(/*ligne.charAt(j)*/d.getScenetest()[i][j] == ' ') {
 		        Model.scene[i][j]=new Darkground();   
 		        }
 		      /* else if(ligne.charAt(j) == 'H') {
@@ -103,22 +108,10 @@ public class ViewPanel extends JPanel {
 		        Model.scene[i][j] = new Ground();
 		       }
 		       
-		       
-		       System.out.print(ligne.charAt(j));
-		       //System.out.println(Model.scene[i][j]);
-		       
 		       Model.scene[i][j].setX(31*(j));
 		       Model.scene[i][j].setY(31*(i));
-		      }
-		      
-		      System.out.println("");
-		      i++;
-		  }
-		  buff.close(); 
-		  }  
-		  catch (Exception e){
-		  System.out.println(e.toString());
-		  }
+		 	}
+		 }
 
 		}
 
@@ -141,20 +134,91 @@ public class ViewPanel extends JPanel {
 					}		
 				}
 		}
-		Font font = new Font("Comic Sans MS", Font.BOLD,30);
-		g.setFont(font);
+		g.setColor(Color.blue);
+		g.fillRoundRect(512,15,74,28, 8, 8);
+		g.setColor(Color.black);
+		g.fillRoundRect(514,18,68,23,8,8);
+		Font font2 = new Font("Comic Sans MS", Font.BOLD,17);
+		g.setFont(font2);
 		g.setColor(Color.white);
-		g.drawString("Score : "+Model.getSc(), 460, 25);
-		g.drawString("Time : "+120, 460, 55);
+		g.drawString(" "+Model.getSc(), 514, 36);
+		g.setColor(Color.blue);
+		g.fillRoundRect(1007,2,74,28, 8, 8);
+		g.setColor(Color.black);
+		g.fillRoundRect(1009,5,68,23,8,8);
+		Image img1;
+		try {	
+			img1 = ImageIO.read(new File("D:\\Prosits\\Prosits\\2nd Semestre\\UE 2.2 Java\\Projet Java 2\\Images\\dia.png"));
+			g.drawImage(img1, 1014, 5, this);
+			Font font = new Font("Comic Sans MS", Font.BOLD,17);
+			g.setFont(font);
+			g.setColor(Color.white);
+			g.drawString("  :"+Model.getDia(), 1025, 21);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	if(Stars.getX(0) == 0 && Model.getSc()!= 120 ) {
+		g.setColor(Color.blue);	
+		g.fillRoundRect(1007,35,74,28, 8, 8);
+		g.setColor(Color.black);
+		g.fillRoundRect(1009,38,68,23,8,8);
+		
+		
+		try {	
+			img = ImageIO.read(new File("D:\\Prosits\\Prosits\\2nd Semestre\\UE 2.2 Java\\Projet Java 2\\Images\\time.png"));
+			g.drawImage(img, 1014, 38, this);
+			Font font = new Font("Comic Sans MS", Font.BOLD,17);
+			g.setFont(font);
+			g.setColor(Color.white);
+			g.drawString("  :"+Model.getTi(), 1025, 54);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+		
+		if (Model.getSc()== 120) {
+			Font font = new Font("Comic Sans MS", Font.BOLD,50);
+			g.setFont(font);
+
+			g.drawString("YOU WIN", 480, 390);
+			Model.setA1(false);
+			Model.setB1(false);
+			Model.setC1(false);
+			Model.setD1(false);
+		}
+		if (Model.getTi()== 0 && Model.getSc()!= 150) {
+			Font font = new Font("Comic Sans MS", Font.BOLD,50);
+			g.setFont(font);
+
+			g.drawString("YOU LOSE", 480, 390);
+			Model.setA1(false);
+			Model.setB1(false);
+			Model.setC1(false);
+			Model.setD1(false);
+			g.setColor(Color.blue);	
+			g.fillRoundRect(1007,35,74,28, 8, 8);
+			g.setColor(Color.black);
+			g.fillRoundRect(1009,38,68,23,8,8);
+			g.drawImage(img, 1014, 38, this);
+				g.setFont(font);
+				g.setColor(Color.white);
+				g.drawString("  : "+0, 1025, 54);
+			
+		}
 		g.drawImage(h.getImg(),h.getX(), h.getY(),this);
 		if(Stars.getX(0) != 0 ) {
 			for(int i = 0; i<9; i++) {
 				g.drawImage(s.getImg(),s.getX(i),s.getY(i),this);
-				int u = h.getY();
-				g.drawImage(h.getImg5(),h.getX(), h.getY(),this);u=-31;
-				h.setY(u);
 			}
+			int u = h.getY();
+			g.drawImage(h.getImg5(),h.getX(), h.getY(),this);
+			u=-31;
+			h.setY(u);
 			g.setColor(Color.green);
+			Font font = new Font("Comic Sans MS", Font.BOLD,50);
+			g.setFont(font);
 			g.drawString("Game Over", 460, 390);
 		}
 		

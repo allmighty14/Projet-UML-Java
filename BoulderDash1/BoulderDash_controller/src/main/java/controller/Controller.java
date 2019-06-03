@@ -2,6 +2,7 @@ package controller;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
 import model.*;
 import Element.*;
 import contract.IController;
@@ -59,7 +60,21 @@ public class Controller implements IController {
 	     				}
 	     			}
 	     		}
+	     		
 	     	},0,150 );
+	        	 Timer timer2 = new Timer();
+		           
+		        	timer2.schedule(new TimerTask() {
+		     		public void run() {
+		     			//System.out.println(Model.allDiamonds.size());
+		     			int a= Model.getTi();
+		     			a-=1;
+		     			Model.setTi(a);
+		     		}
+		     		
+		     	},0,1000);
+		        	
+		        	
 	    }
 	    
 	    public void setPos_diamond(int pos_diamond) {
